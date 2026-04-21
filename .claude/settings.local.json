@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Read(//c/c/users/joewa/projects/**)",
+      "Read(//c/c/users/joewa/**)"
+    ]
+  }
+}
