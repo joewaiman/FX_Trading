@@ -1,0 +1,68 @@
+{
+  "strategy": {
+    "name": "FX Swing — Fundamental pre-screen + RSI(14) / SMA(40) / SMA(60) multi-timeframe",
+    "description": "Two-stage filter. Stage 1: fundamental conviction score eliminates pairs with no clear macro bias. Stage 2: SMA(40/60) trend alignment across Monthly, Weekly, and Daily confirms direction; RSI(14) on the 4H provides the entry timing signal."
+  },
+
+  "watchlist": [
+    "EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "NZD/USD", "USD/CAD", "USD/CHF",
+    "EUR/GBP", "EUR/JPY", "EUR/AUD", "EUR/NZD", "EUR/CAD", "EUR/CHF",
+    "GBP/JPY", "GBP/AUD", "GBP/NZD", "GBP/CAD", "GBP/CHF",
+    "AUD/JPY", "AUD/NZD", "AUD/CAD", "AUD/CHF",
+    "NZD/JPY", "NZD/CAD", "NZD/CHF",
+    "CAD/JPY", "CAD/CHF", "CHF/JPY",
+    "USD/NOK", "USD/SEK", "USD/DKK", "USD/SGD", "USD/MXN",
+    "USD/PLN", "USD/HUF", "USD/CNH"
+  ],
+
+  "fundamental_prescreen": {
+    "source": "fundamental-scores.json",
+    "long_entry": "Base currency is Mild Long or Strong Long AND quote is Neutral, Mild Short, or Strong Short",
+    "short_entry": "Quote currency is Mild Long or Strong Long AND base is Neutral, Mild Short, or Strong Short",
+    "minimum_differential": 1
+  },
+
+  "indicators": {
+    "sma_40": "Trend direction. Price above SMA(40) = bullish structure. Below = bearish.",
+    "sma_60": "Trend confirmation. SMA(40) above SMA(60) = uptrend intact. Below = downtrend intact.",
+    "rsi_14": "Entry timing on 4H only. Below 45 in confirmed uptrend = pullback entry. Above 55 in confirmed downtrend = extension entry."
+  },
+
+  "timeframe_roles": {
+    "Monthly": "Macro trend — must align with fundamental bias",
+    "Weekly":  "Intermediate trend — must confirm monthly direction",
+    "Daily":   "Short-term trend — must confirm weekly direction",
+    "4H":      "Entry timing — RSI(14) pullback or extension signal"
+  },
+
+  "entry_rules": {
+    "long": [
+      "Monthly: price above SMA(40) and SMA(60), SMA(40) > SMA(60)",
+      "Weekly: price above SMA(40) and SMA(60), SMA(40) > SMA(60)",
+      "Daily: price above SMA(40) and SMA(60), SMA(40) > SMA(60)",
+      "4H: RSI(14) below 45 — pullback in confirmed uptrend"
+    ],
+    "short": [
+      "Monthly: price below SMA(40) and SMA(60), SMA(40) < SMA(60)",
+      "Weekly: price below SMA(40) and SMA(60), SMA(40) < SMA(60)",
+      "Daily: price below SMA(40) and SMA(60), SMA(40) < SMA(60)",
+      "4H: RSI(14) above 55 — extension in confirmed downtrend"
+    ]
+  },
+
+  "exit_rules": [
+    "Take profit at next major SMA on the daily (SMA(40) for longs, SMA(40) for shorts)",
+    "Trail stop below/above the weekly SMA(40) once trade is in profit",
+    "Hard stop: 1% below entry for longs, 1% above entry for shorts (overridden by broker stop order)"
+  ],
+
+  "risk_rules": [
+    "Risk maximum 1% of portfolio per trade (set via RISK_PER_TRADE in .env)",
+    "Maximum trade size capped by MAX_TRADE_SIZE_USD in .env",
+    "Maximum trades per day capped by MAX_TRADES_PER_DAY in .env",
+    "Minimum lot size: 1,000 units (micro lot)",
+    "Paper trade first — run at least 2 weeks of paper signals before going live"
+  ],
+
+  "notes": "Swing / position trading strategy. Designed for 4H entry on weekly/monthly trend structures. Do not trade EM pairs (NOK, SEK, DKK, PLN, HUF, SGD, MXN, CNH) without verifying broker liquidity and spread first. Fundamental scores must be refreshed at minimum weekly."
+}

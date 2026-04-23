@@ -1,0 +1,25 @@
+{
+  "updated": "2026-04-21",
+  "source": "fx-fundamental-analysis skill — refresh weekly or after major data releases",
+  "scores": {
+    "USD": { "bias": "Strong Long", "score": 7.5, "rank": 1 },
+    "AUD": { "bias": "Strong Long", "score": 7.0, "rank": 2 },
+    "GBP": { "bias": "Mild Long",   "score": 6.0, "rank": 3 },
+    "JPY": { "bias": "Mild Long",   "score": 6.0, "rank": 4 },
+    "EUR": { "bias": "Mild Long",   "score": 5.0, "rank": 5 },
+    "CHF": { "bias": "Mild Long",   "score": 5.0, "rank": 6 },
+    "NZD": { "bias": "Neutral",     "score": 4.5, "rank": 7 },
+    "CAD": { "bias": "Strong Short","score": 2.0, "rank": 8 },
+    "CNY": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "INR": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "BRL": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "MXN": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "NOK": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "SEK": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "DKK": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "PLN": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "HUF": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "SGD": { "bias": "Neutral",     "score": 0,   "rank": 9 },
+    "ILS": { "bias": "Neutral",     "score": 0,   "rank": 9 }
+  }
+}
