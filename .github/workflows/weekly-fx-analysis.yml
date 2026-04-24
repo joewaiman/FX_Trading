@@ -1,0 +1,44 @@
+name: Weekly FX Analysis
+
+on:
+  schedule:
+    - cron: "0 21 * * 5"   # Every Friday 21:00 UTC (midnight Fri→Sat Israel time)
+  workflow_dispatch:         # Allow manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Generate FX analysis
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/generate_analysis.py
+
+      - name: Commit and push analysis
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add analysis/
+          if git diff --cached --quiet; then
+            echo "No new analysis file to commit."
+          else
+            git commit -m "chore: add weekly FX analysis $(date -u +%Y-%m-%d)"
+            git push origin HEAD
+          fi
