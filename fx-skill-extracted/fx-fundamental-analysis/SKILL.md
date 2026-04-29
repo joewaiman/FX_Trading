@@ -33,10 +33,14 @@ This skill systematically evaluates currencies using 7 core economic indicators 
 
 ## Step 1 — Currency Universe
 
-Default universe (majors + liquid crosses):
-`USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF`
+Default universe — always analyse all of these unless the user specifies otherwise:
+`USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF, ILS, SGD, NOK, SEK, HKD`
 
-The user may expand to include: `NOK, SEK, SGD, HKD, CNH, MXN, ZAR, TRY`
+The user may expand to include: `CNH, MXN`
+
+**Important:** Gather data for **all currencies in the universe first** before proceeding to
+scoring or analysis. Do not score or rank mid-collection. Complete Step 2 fully across all
+currencies, then move to Step 3.
 
 ---
 
@@ -202,16 +206,18 @@ The Inflation (%) column is a raw data column — it provides the actual figure 
 
 ## Step 4 — Pair Construction
 
-Once you have biases for all analysed currencies, construct pairs:
+Once you have biases for all analysed currencies, construct all valid pairs:
 
-**Best long/short combinations:**
+**Long/short combinations — present every valid setup:**
 ```
 Strong Bullish vs Strong Bearish = Highest conviction pair
 Strong Bullish vs Mild Bearish   = Medium conviction
 Mild Bullish   vs Strong Bearish = Medium conviction
 ```
 
-Present the top 3–5 pairs ranked by conviction differential.
+Present **all** valid pairs ranked by conviction differential — do not cap the list.
+A larger universe means more opportunities; include every non-neutral vs non-neutral combination.
+Group by conviction tier (High / Medium) for readability.
 
 ---
 
