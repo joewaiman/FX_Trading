@@ -11,7 +11,31 @@
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\joewa\\\\AppData\\\\Local\\\\Packages\" | Select-Object Name | Where-Object { $_.Name -match \"Trading\" })",
       "PowerShell(Start-Process -FilePath \"C:\\\\Program Files\\\\WindowsApps\\\\TradingView.Desktop_3.1.0.7818_x64__n534cwy3pjxzj\\\\TradingView.exe\" -ArgumentList \"--remote-debugging-port=9222\")",
       "PowerShell(netstat *)",
-      "PowerShell(Get-Process | Where-Object { $_.Id -eq 16908 })"
+      "PowerShell(Get-Process | Where-Object { $_.Id -eq 16908 })",
+      "Bash(unzip *)",
+      "mcp__tradingview__chart_set_symbol",
+      "mcp__tradingview__tv_launch",
+      "PowerShell($lnk = New-Object -ComObject WScript.Shell; $lnk.CreateShortcut\\(\"C:\\\\Users\\\\joewa\\\\OneDrive\\\\Desktop\\\\TradingView.lnk\"\\).TargetPath)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(cmd /c dir \"C:\\\\Users\\\\joewa\\\\OneDrive\\\\Desktop\" /a 2>&1)",
+      "PowerShell($shell = New-Object -ComObject WScript.Shell; $s1 = $shell.CreateShortcut\\(\"C:\\\\Users\\\\joewa\\\\OneDrive\\\\Desktop\\\\TradingView MCP.lnk\"\\); $s2 = $shell.CreateShortcut\\(\"C:\\\\Users\\\\joewa\\\\OneDrive\\\\Desktop\\\\TradingView.lnk\"\\); Write-Host \"TradingView MCP.lnk -> Target: $\\($s1.TargetPath\\) | Args: $\\($s1.Arguments\\)\"; Write-Host \"TradingView.lnk     -> Target: $\\($s2.TargetPath\\) | Args: $\\($s2.Arguments\\)\")",
+      "PowerShell(findstr *)",
+      "PowerShell(Get-AppxPackage *)",
+      "PowerShell(Get-Process *)",
+      "mcp__tradingview__data_get_ohlcv",
+      "mcp__tradingview__chart_get_state",
+      "mcp__tradingview__quote_get",
+      "mcp__tradingview__indicator_set_inputs",
+      "mcp__tradingview__chart_manage_indicator",
+      "mcp__tradingview__data_get_study_values",
+      "mcp__tradingview__chart_set_timeframe",
+      "mcp__tradingview__capture_screenshot",
+      "mcp__tradingview__pane_list",
+      "mcp__tradingview__tab_list",
+      "mcp__tradingview__ui_click",
+      "mcp__tradingview__ui_keyboard",
+      "mcp__tradingview__ui_type_text",
+      "mcp__tradingview__tv_health_check"
     ]
   }
 }
