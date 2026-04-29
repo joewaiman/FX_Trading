@@ -7,7 +7,9 @@ description: >
   or evaluate whether a currency is bullish/bearish based on fundamentals. Also use when the user
   asks about inflation, interest rates, unemployment, GDP, PMI, retail sales, or trade balance in the
   context of FX or forex trading. This is Step 1 of the FX Strategy workflow — fundamental screening
-  before technical analysis.
+  before technical analysis. Use proactively whenever the user mentions a currency, country economy,
+  central bank decision, or asks which FX pairs look interesting — even if they don't explicitly ask
+  for "fundamental analysis".
 ---
 
 # FX Fundamental Analysis Skill
@@ -39,6 +41,36 @@ The user may expand to include: `NOK, SEK, SGD, HKD, CNH, MXN, ZAR, TRY`
 ---
 
 ## Step 2 — The 7 Indicators
+
+### Data Collection Protocol
+
+Fetch all currencies **in parallel** — do not wait for one to complete before starting the next.
+For each currency, follow this sequence:
+
+**1. Primary fetch (covers most indicators in one call):**
+```
+web_fetch → https://tradingeconomics.com/{country}/indicators
+```
+This single page returns CPI, rate, unemployment, GDP, PMI, retail sales, and trade balance
+for the country. Extract all available values before making additional calls.
+
+**2. Targeted web search (only if a value is missing or looks stale):**
+```
+web_search → "{country} {indicator} latest {current year}"
+```
+Use the query templates in `references/data-sources.md`.
+
+**3. Rate bias confirmation (always run this):**
+```
+web_search → "{central bank name} rate decision outlook {current year}"
+```
+This captures the forward guidance signal (hike / hold / cut) which is not always on the
+indicators page.
+
+Parallelism example — for 8 currencies, launch all 8 `web_fetch` calls in one batch, then
+follow up with targeted searches only where needed.
+
+---
 
 For each currency, gather the following. Source priority: **Trading Economics** → central bank publications → Bloomberg/Reuters.
 
@@ -140,7 +172,7 @@ Currency: [XXX]
 │ Trade Balance           │ 🟢/🟡/🔴 │ $xB surplus/deficit          │
 │ TE Commentary           │ 🟢/🟡/🔴 │ Summary sentence             │
 ├─────────────────────────┼─────────┼──────────────────────────────┤
-│ OVERALL BIAS            │ BULL/BEAR/NEUTRAL │ X/8 bullish        │
+│ OVERALL BIAS            │ BULL/BEAR/NEUTRAL │ X/9 bullish        │
 └─────────────────────────┴─────────┴──────────────────────────────┘
 ```
 
@@ -159,12 +191,12 @@ When analysing a basket of currencies, present a single comparison table with th
 
 The Inflation (%) column is a raw data column — it provides the actual figure so the CPI vs Target score can be read in context.
 
-**Aggregate scoring:**
-- 6–8 🟢 = **Strong Bullish** → Long candidate
-- 4–5 🟢 = **Mild Bullish** → Tentative long
+**Aggregate scoring (out of 9):**
+- 7–9 🟢 = **Strong Bullish** → Long candidate
+- 5–6 🟢 = **Mild Bullish** → Tentative long
 - Mix of 🟢🔴 = **Conflicted** → Neutral / avoid
-- 4–5 🔴 = **Mild Bearish** → Tentative short
-- 6–8 🔴 = **Strong Bearish** → Short candidate
+- 5–6 🔴 = **Mild Bearish** → Tentative short
+- 7–9 🔴 = **Strong Bearish** → Short candidate
 
 ---
 
