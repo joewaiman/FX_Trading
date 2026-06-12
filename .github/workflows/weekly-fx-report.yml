@@ -1,0 +1,158 @@
+name: Weekly FX Report
+
+on:
+  schedule:
+    - cron: '0 21 * * 5'   # Every Friday 21:00 UTC = midnight Fri→Sat (Israel IDT)
+  workflow_dispatch:         # Allow manual trigger for testing
+
+permissions:
+  contents: write
+
+jobs:
+  generate-weekly-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compute date variables
+        run: |
+          echo "RUN_DATE=$(date -u +%Y-%m-%d)"     >> $GITHUB_ENV
+          echo "WEEK_LABEL=$(date -u +%G-W%V)"     >> $GITHUB_ENV
+          echo "WEEK_NUM=$(date -u +%V)"            >> $GITHUB_ENV
+          echo "WEEK_YEAR=$(date -u +%G)"           >> $GITHUB_ENV
+          # ISO week Monday and Friday
+          MONDAY=$(date -u -d "$(date -u +%Y-%m-%d) - $(date -u +%u) + 1 days" +"%d %b %Y" 2>/dev/null || \
+                   python3 -c "from datetime import date, timedelta; d=date.today(); print((d - timedelta(days=d.weekday())).strftime('%d %b %Y'))")
+          FRIDAY=$(date -u -d "$(date -u +%Y-%m-%d) - $(date -u +%u) + 5 days" +"%d %b %Y" 2>/dev/null || \
+                   python3 -c "from datetime import date, timedelta; d=date.today(); print((d - timedelta(days=d.weekday()-4)).strftime('%d %b %Y'))")
+          echo "WEEK_MON=$MONDAY"   >> $GITHUB_ENV
+          echo "WEEK_FRI=$FRIDAY"   >> $GITHUB_ENV
+
+      - name: Generate weekly FX report with Claude
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-opus-4-8
+          timeout_minutes: 25
+          prompt: |
+            Today is ${{ env.RUN_DATE }}. Generate the weekly FX overview report for
+            ${{ env.WEEK_LABEL }} (Mon ${{ env.WEEK_MON }} – Fri ${{ env.WEEK_FRI }}).
+
+            Save the finished report as:
+              weekly-reports/${{ env.WEEK_LABEL }}.md
+
+            ─── CURRENCY BASKET (19 currencies) ───────────────────────────────────────
+            USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF, CNY, INR, BRL, MXN,
+            NOK, SEK, DKK, PLN, HUF, SGD, ILS
+
+            ─── RESEARCH STEPS ────────────────────────────────────────────────────────
+            Use web search to find real data for this week. For each currency collect:
+              • Central bank policy rate (current) and any rate decision this week
+              • Key data releases this week: CPI, GDP, PMI, employment, trade balance
+                — report Actual | Forecast | Prior for each release
+              • Current spot rate vs USD and weekly % change vs prior Friday close
+              • Any major market-moving news or central bank commentary
+
+            Also collect:
+              • Weekly close and % change for each major equity index:
+                S&P 500, Nikkei 225, FTSE 100, DAX, Euro Stoxx 50, ASX 200,
+                Nifty 50, Shanghai Composite, TSX Composite, Ibovespa, OBX,
+                SMI, TA-125, IPC (BMV), WIG20, BUX, OMX Stockholm 30,
+                OMX Copenhagen 20, NZX 50, S&P 100 (OEX), STI
+              • Next week's key economic calendar events (dates, currencies, releases,
+                forecasts vs prior)
+
+            ─── OUTPUT FORMAT ──────────────────────────────────────────────────────────
+            Follow EXACTLY the structure of the most recent report in weekly-reports/.
+            Reproduce every section header, table format, and inline-data style below.
+
+            ```
+            # Weekly FX Overview — {WEEK_LABEL} | Mon {MON_DATE} – Fri {FRI_DATE}
+
+            *Generated: {RUN_DATE} | Basket: 19 currencies | Source: [list sources used]*
+
+            ---
+
+            ## 1. Economic Highlights
+
+            **{CURRENCY_NAME} — {FULL_CURRENCY_NAME}**
+            [2-4 sentence narrative of the week's key developments for this currency.
+            Lead with the most market-moving release. Include rate decision if applicable.]
+            - {Release name}: Actual {X} | Forecast {Y} | Prior {Z}
+            - {Release name}: Actual {X} | Forecast {Y} | Prior {Z}
+            - {Central bank name} Rate: {X}% | Next decision: {date if known}
+
+            [Repeat for all 19 currencies in this order:
+             USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF, CNY, INR, BRL, MXN,
+             NOK, SEK, DKK, PLN, HUF, SGD, ILS]
+
+            ---
+
+            ## 2. Upcoming Calendar — {NEXT_WEEK_LABEL} ({date range})
+
+            | Date | Currency | Release | Forecast | Prior |
+            |------|----------|---------|----------|-------|
+            | {Day Date} | {CCY} | {Release name} | {X} | {Y} |
+            ...
+
+            *Note: Forecasts marked "est." are analyst-consensus estimates; bold items
+            are major market-moving events.*
+
+            ---
+
+            ## 3. FX Performance vs USD
+
+            *Spot rates as of Friday {FRI_DATE} close. Weekly change = vs Friday
+            {PRIOR_FRI_DATE} close. Rates marked (est.) are approximate.
+            Sorted best → worst performance vs USD.*
+
+            | Currency | Code | Spot vs USD | Weekly Δ% |
+            |----------|------|-------------|----------|
+            | {Name} | {CODE} | {rate} per USD | {±X.XX%} |
+            ...
+
+            *DXY (USD Index): ~{X.XX} | Prior week: ~{Y.YY} | Weekly Δ: {±Z.ZZ%}*
+
+            ---
+
+            ## 4. Stock Index Weekly Performance
+
+            *Weekly close and % change for week ending Friday {FRI_DATE}.
+            Sorted by weekly % change descending. Levels/changes marked (est.) are
+            approximate based on available data.*
+
+            | Index | Country | CCY | Close | Weekly Δ% |
+            |-------|---------|-----|-------|-----------|
+            | {Index} | {Country} | {CCY} | {close} | {±X.XX%} |
+            ...
+
+            *Key driver: [1-2 sentence summary of the main cross-asset theme this week]*
+
+            ---
+
+            *Informational only. FX trading carries significant risk. Past performance
+            is not indicative of future results. All estimates marked (est.) are
+            approximations from available data; verify with primary sources before
+            trading.*
+            ```
+
+            ─── QUALITY RULES ──────────────────────────────────────────────────────────
+            • Use real data from web searches — do NOT hallucinate rates or releases.
+            • If a data point is unavailable, mark it "(est.)" and note the source.
+            • All rates/closes must be from this week's close (Friday ${{ env.WEEK_FRI }}).
+            • Do not include analysis/trade recommendations — this is a factual summary.
+            • Keep the ILS section concise; include TA-125 and USD/ILS spot.
+            • Currencies without releases this week still get a brief note on rate/spot.
+
+      - name: Commit and push report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet HEAD; then
+            echo "No new report generated — nothing to commit."
+            exit 0
+          fi
+          git add "weekly-reports/${{ env.WEEK_LABEL }}.md"
+          git commit -m "Weekly FX Report ${{ env.WEEK_LABEL }} — auto-generated"
+          git push -u origin HEAD
