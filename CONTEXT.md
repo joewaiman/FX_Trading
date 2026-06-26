@@ -6,8 +6,8 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 ---
 
 ## Last Updated
-**Date:** 2026-06-24 (W26) — session 2
-**Session work:** Entry confirmation review on EUR/USD and EUR/NOK
+**Date:** 2026-06-26 (W26) — Friday automated routine
+**Session work:** Generated W26 weekly report (`weekly-reports/2026-W26.md`). No technical or fundamental changes; active pair statuses carried forward from 2026-06-24 session.
 
 ---
 
@@ -141,7 +141,13 @@ None currently open.
 1. **EUR/USD:** Monitor for bounce. Re-run entry confirmation when price recovers to 1.1380–1.1430 (Scenario A) or 1.1450–1.1500 (Scenario B). Always macro-check first.
 2. **EUR/NOK:** Monitor for gradual approach to 11.40–11.50. May take 5–10 sessions at current pace.
 3. **NOK/SEK:** Watch for pullback to 0.985–0.990 or daily close above 0.9962 (SMA50).
-4. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard for central bank decisions or data releases.
+4. **W27 macro priorities:**
+   - **Thu Jul 3: US NFP (June)** — +115K consensus after May's +172K. A soft print could deflate Oct hike pricing; a beat reinforces it. Macro-check required before any USD trade.
+   - **Tue Jul 1: Eurozone HICP flash (June)** — 3.1% consensus. Downside miss would press EUR lower; upside would revive ECB hike speculation.
+   - **Tue Jul 1: US ISM Manufacturing** — 50.5 est. After PMI 55.7, any ISM beat would further anchor the USD bid.
+   - **Wed Jul 2: FOMC minutes (Jun 17)** — watch for detail on what data conditions would trigger the October hike.
+   - **RBNZ Jul 8 (following week)** — ~80% probability of +25bp. Prepare NZD pairs analysis if AUD/NZD or NZD/JPY setups emerge.
+5. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard after NFP and Eurozone HICP. Key currency to watch: NZD ahead of RBNZ.
 
 ---
 
