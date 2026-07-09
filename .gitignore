@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+
+# Tooling artifacts
+.playwright-mcp/
+.claude/settings.local.json
+
+# Stray file created by a redirected shell command (empty, 2026-05-19)
+/cd
