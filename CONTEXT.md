@@ -6,21 +6,23 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 ---
 
 ## Last Updated
-**Date:** 2026-07-02 (W27) — session 3
-**Session work:** Full pair-screener run across the 19-currency basket + technical analysis on the 5-pair shortlist. USD in a broad uptrend this week; strongest cross setups are CNY/MXN longs vs JPY/SEK/INR. No triggers confirmed — all waiting. See `analysis/2026-07-02-pair-screener.md` and `analysis/2026-07-02-shortlist-technical.md`.
+**Date:** 2026-07-08 (W28) — session 4
+**Session work:** Three high-conviction technical analyses logged to Supabase via `log_technical_2026-07-08.py`. NOK/SEK is the top pick — all three timeframes bullish with fundamentals aligned. No triggers confirmed; all three watching.
 
-### W27 Shortlist status (2026-07-02)
-| Pair | Dir | Entry | Stop | TP1 (R:R) | Status |
-|------|-----|-------|------|-----------|--------|
-| CNYJPY | LONG | 23.74 | 23.65 | 23.95 (2.3:1) | ⏳ At zone — needs bullish 4H candle |
-| CNYINR | LONG | 14.00 | 13.90 | 14.15 (1.5:1) | ⏳ Live 4H breakout; enter on 14.00 retest |
-| MXNSEK | LONG | 0.5515 | 0.5495 | 0.5581 (3.3:1) | ⏳ Near zone, tight low-vol grind |
-| CNYSEK | LONG | 1.4225 | 1.4150 | 1.4414 (2.5:1) | ⏳ Mid-range — needs pullback/breakout |
-| GBPJPY | LONG | — | — | — | ❌ Skip — range top 216.6, stops too wide |
+⚠️ **This session produced no markdown analysis file.** The only record is the DB rows and the script itself. Reconstruct from `log_technical_2026-07-08.py` or query the `technical` table.
 
-⚠️ Three of four actionable setups involve managed currencies (CNY = PBOC fixing, INR = RBI intervention). Macro-check fixing/intervention headlines before entry. Purely technical — not yet cross-checked against a W27 fundamental scan.
+### W28 Shortlist status (2026-07-08)
+| Pair | Dir | Entry | Stop | TP1 (R:R) | Conf. | Status |
+|------|-----|-------|------|-----------|-------|--------|
+| NOKSEK | LONG | 0.9855 | 0.977 | 1.000 (1.7:1) | 4 | ⏳ Top pick — buy dip to 0.985 (20 SMA) or break >1.000 |
+| USDSEK | LONG | 9.66 | 9.585 | 9.795 (1.8:1) | 3 | ⏳ Buy dip 9.66 or break >9.80 |
+| SEKJPY | SHORT | 16.80 | 16.90 | 16.505 (3.0:1) | 3 | ⏳ Sell bounce into 16.80. Illiquid, wide spreads |
 
-_(Prior W26 EUR/USD, EUR/NOK, NOK/SEK setups below are superseded — refresh fundamentals for W27 before re-acting on them.)_
+🔴 **Concentration risk — all three setups are the same trade.** Long NOKSEK, long USDSEK and short SEKJPY are each a short-SEK expression. The confluence scores read as independent conviction but the correlation is near-total: a hawkish Riksbank surprise or a SEK short-squeeze hits all three at once. **Size as one position, not three.** If taking more than one, cut size proportionally.
+
+⚠️ SEKJPY trades on an illiquid Capital.com feed with wide spreads, and R:R from spot is poor — it only works on a bounce into 16.80.
+
+_(The W27 CNY/MXN shortlist — CNYJPY, CNYINR, MXNSEK, CNYSEK — is superseded by the above and was never triggered. Prior W26 EUR/USD, EUR/NOK, NOK/SEK setups below are older still.)_
 
 ---
 
@@ -142,19 +144,21 @@ None currently open.
 
 | File | Contents |
 |------|----------|
-| `fundamental-analysis/2026-W26.md` | Full W26 scorecard for all 19 currencies |
-| `analysis/2026-06-24-EURUSD-technical.md` | EUR/USD technical — waiting for bounce then re-entry |
-| `analysis/2026-06-24-EURNOK-technical.md` | EUR/NOK technical — waiting for 11.45 zone |
-| `analysis/2026-06-24-NOKSEK-technical.md` | NOK/SEK technical — waiting for R:R to work |
+| `log_technical_2026-07-08.py` | **W28 shortlist source of truth** — NOKSEK / USDSEK / SEKJPY rows |
+| `analysis/2026-07-02-pair-screener.md` | W27 full 19-currency screener (superseded) |
+| `analysis/2026-07-02-shortlist-technical.md` | W27 5-pair technicals (superseded) |
+| `fundamental-analysis/2026-W26.md` | Last full scorecard for all 19 currencies |
+| `analysis/2026-06-24-*-technical.md` | W26 EUR/USD, EUR/NOK, NOK/SEK (superseded) |
 
 ---
 
 ## Next Steps
 
-1. **EUR/USD:** Monitor for bounce. Re-run entry confirmation when price recovers to 1.1380–1.1430 (Scenario A) or 1.1450–1.1500 (Scenario B). Always macro-check first.
-2. **EUR/NOK:** Monitor for gradual approach to 11.40–11.50. May take 5–10 sessions at current pace.
-3. **NOK/SEK:** Watch for pullback to 0.985–0.990 or daily close above 0.9962 (SMA50).
-4. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard for central bank decisions or data releases.
+1. **Refresh prices before acting on anything.** The W28 levels were read on 2026-07-08 and go stale fast — re-check spot, SMAs and RSI against live data.
+2. **Decide the SEK exposure first, then the expression.** All three W28 setups are short-SEK. Pick one (NOKSEK has the best confluence and cleanest liquidity) rather than stacking correlated risk.
+3. **Run a W28 fundamental scan.** The last full scorecard is W26 (2026-06-24) — two weeks old. The short-SEK thesis rests on a dovish Riksbank; confirm that still holds before sizing.
+4. **Backfill the missing 07-08 analysis file.** Write `analysis/2026-07-08-shortlist-technical.md` from the script + DB rows so the reasoning survives outside Supabase.
+5. **Macro-check** for Riksbank, Norges Bank, Fed and BoJ events within 72h of any entry.
 
 ---
 
