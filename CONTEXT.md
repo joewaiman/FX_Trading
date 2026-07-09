@@ -6,8 +6,21 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 ---
 
 ## Last Updated
-**Date:** 2026-06-24 (W26)
-**Session work:** Fundamental analysis for all 19 currencies + technical analysis on 3 pairs
+**Date:** 2026-07-02 (W27) — session 3
+**Session work:** Full pair-screener run across the 19-currency basket + technical analysis on the 5-pair shortlist. USD in a broad uptrend this week; strongest cross setups are CNY/MXN longs vs JPY/SEK/INR. No triggers confirmed — all waiting. See `analysis/2026-07-02-pair-screener.md` and `analysis/2026-07-02-shortlist-technical.md`.
+
+### W27 Shortlist status (2026-07-02)
+| Pair | Dir | Entry | Stop | TP1 (R:R) | Status |
+|------|-----|-------|------|-----------|--------|
+| CNYJPY | LONG | 23.74 | 23.65 | 23.95 (2.3:1) | ⏳ At zone — needs bullish 4H candle |
+| CNYINR | LONG | 14.00 | 13.90 | 14.15 (1.5:1) | ⏳ Live 4H breakout; enter on 14.00 retest |
+| MXNSEK | LONG | 0.5515 | 0.5495 | 0.5581 (3.3:1) | ⏳ Near zone, tight low-vol grind |
+| CNYSEK | LONG | 1.4225 | 1.4150 | 1.4414 (2.5:1) | ⏳ Mid-range — needs pullback/breakout |
+| GBPJPY | LONG | — | — | — | ❌ Skip — range top 216.6, stops too wide |
+
+⚠️ Three of four actionable setups involve managed currencies (CNY = PBOC fixing, INR = RBI intervention). Macro-check fixing/intervention headlines before entry. Purely technical — not yet cross-checked against a W27 fundamental scan.
+
+_(Prior W26 EUR/USD, EUR/NOK, NOK/SEK setups below are superseded — refresh fundamentals for W27 before re-acting on them.)_
 
 ---
 
@@ -60,14 +73,24 @@ Full detail in: `fundamental-analysis/2026-W26.md`
 
 | Timeframe | Channel | SMAs | RSI |
 |-----------|---------|------|-----|
-| Weekly | 🔴 Bearish breakdown | 1.16312 / 1.16605 — both above price | 38.18 (bearish) |
-| Daily | 🔴 Bearish | 1.16201 / ~1.167 — both above price | ~27 ⚠️ near oversold |
-| 4H | 🔴 Bearish | 1.14903 / 1.15424 — both above price | ~33–35 (bearish) |
+| Weekly | 🔴 Bearish breakdown | Both well above price | 38.18 (bearish) |
+| Daily | 🔴 Bearish | Both above price | ~27 ⚠️ oversold |
+| 4H | 🔴 Bearish | SMA20: 1.14202 / SMA50: 1.15047 — both above price | **17.95 ⚠️ DEEPLY oversold** |
 
-**Current price:** ~1.1356
-**Status:** ⏳ WAITING — all timeframes bearish but Daily RSI ~27 means high bounce risk. Do NOT short here.
-**Watch for:** Pullback to **1.1450–1.1500** zone, then bearish 4H candle (pin bar or engulfing)
-**Entry zone:** 1.1450–1.1500 | **Stop:** 1.1570 | **TP1:** 1.1280 | **TP2:** 1.1150
+**Current price:** ~1.1342
+**What happened:** Price pulled back into entry zone (1.1450–1.1500) today. A marginal bearish breakdown occurred (Bar 9: open 1.14549, close 1.14310, zero upper wick). Price has since fallen ~110 pips to 1.1342. 4H RSI hit 17.95 — extreme oversold. Entry opportunity passed without a clean Grade A/B trigger.
+
+**Status:** ⏳ WAITING — DO NOT SHORT HERE. RSI 17.95 on 4H means bounce is highly likely before any further continuation.
+
+**Watch for (Scenario A — shallow bounce):** Recovery to **1.1380–1.1430** + bearish 4H pin bar/engulfing
+- Entry: ~1.1410 | Stop: 1.1470 | TP1: 1.1280 | R:R ~2:1 ✅
+
+**Watch for (Scenario B — full retest):** Recovery back to **1.1450–1.1500** + bearish 4H trigger
+- Entry: 1.1450–1.1500 | Stop: 1.1570 | TP1: 1.1280 | TP2: 1.1150
+
+**Invalidation:** Daily close above 1.1560 — broken support reclaimed, thesis weakens
+
+**⚠️ Macro check required before any entry:** Verify no USD or EUR high-impact events (PCE, Fed speakers, ECB) within 72h
 
 ---
 
@@ -75,18 +98,26 @@ Full detail in: `fundamental-analysis/2026-W26.md`
 
 | Timeframe | Channel | SMAs | RSI |
 |-----------|---------|------|-----|
-| Weekly | 🟡 Transitional | 11.03578 (below) / 11.45368 (above) | ~49.71 (neutral) |
-| Daily | 🟢 Bullish ⚠️ | 10.958 / 10.891 — both below price | 68.38 near overbought |
-| 4H | 🟢 Bullish | 11.118 / 11.075 — both below price | 65.63 (bullish) |
+| Weekly | 🟡 Transitional | SMA20: 11.03 (below) / SMA50: 11.45 (above) | ~49.71 (neutral) |
+| Daily | 🟢 Bullish | Both well below price | ~68 approaching overbought |
+| 4H | 🟢 Bullish | SMA20: 11.121 / SMA50: 11.081 — both below price | 65.94 (bullish) |
 
-**Current price:** ~11.1531
-**Status:** ❌ NO TRADE — daily and 4H are technically bullish (EUR/NOK rising). Fundamentals say short but technicals oppose it. Do not trade against the daily channel.
-**Watch for:** Price approaches **11.40–11.50** (weekly SMA50 resistance), then bearish 4H candle
-**Entry zone:** 11.45–11.50 | **Stop:** 11.58 | **TP1:** 11.15 | **TP2:** 10.90
+**Current price:** ~11.160
+**What happened:** Price pulled back intraday to 11.063 (tested 4H SMA50 at 11.08), then recovered cleanly to 11.160. Classic bullish behaviour — buyers defended the SMA50. Uptrend firmly intact.
+
+**Status:** ❌ NO TRADE — Daily and 4H channels both bullish, opposing the short thesis. ~280 pips from entry zone. No change from last session.
+
+**Watch for:** Price approaches **11.40–11.50** (weekly SMA50 resistance) + bearish 4H candle
+- Entry: 11.45–11.50 | Stop: 11.58 | TP1: 11.15 | TP2: 10.90
+- Daily RSI breaking above 70 would confirm exhaustion approaching
+
+**Key support to watch:** 4H SMA50 (~11.08) — a daily close below this signals trend weakening
 
 ---
 
 ### NOK/SEK — `analysis/2026-06-24-NOKSEK-technical.md`
+
+*(Not reviewed this session — status carried forward from session 1)*
 
 | Timeframe | Channel | SMAs | RSI |
 |-----------|---------|------|-----|
@@ -95,10 +126,9 @@ Full detail in: `fundamental-analysis/2026-W26.md`
 | 4H | 🟢 Recovering | ~0.991 / ~0.989 — both below price | 63.62 (bullish) |
 
 **Current price:** ~0.9941
-**Status:** ⏳ WAITING — R:R is the blocking condition. Distance to first TP (1.000) is only ~60 pips from current; risk is ~90 pips. Minimum 1.5:1 not met.
-**Watch for (option A):** Pullback to **0.985–0.990** with bullish 4H pin bar → enter at 0.988, stop 0.980
+**Status:** ⏳ WAITING — R:R blocking. Distance to TP1 (1.000) only ~60 pips from current; risk ~90 pips. 1.5:1 minimum not met.
+**Watch for (option A):** Pullback to **0.985–0.990** with bullish 4H pin bar → entry 0.988, stop 0.980
 **Watch for (option B):** Daily close above **0.99622** (daily SMA50) with RSI > 50 → confirms daily reversal
-**Entry zone:** 0.985–0.990 | **Stop:** 0.9800 | **TP1:** 1.0000 | **TP2:** 1.0200
 
 ---
 
@@ -113,7 +143,7 @@ None currently open.
 | File | Contents |
 |------|----------|
 | `fundamental-analysis/2026-W26.md` | Full W26 scorecard for all 19 currencies |
-| `analysis/2026-06-24-EURUSD-technical.md` | EUR/USD technical — waiting for pullback |
+| `analysis/2026-06-24-EURUSD-technical.md` | EUR/USD technical — waiting for bounce then re-entry |
 | `analysis/2026-06-24-EURNOK-technical.md` | EUR/NOK technical — waiting for 11.45 zone |
 | `analysis/2026-06-24-NOKSEK-technical.md` | NOK/SEK technical — waiting for R:R to work |
 
@@ -121,10 +151,10 @@ None currently open.
 
 ## Next Steps
 
-1. **EUR/USD:** Re-run entry confirmation when price bounces to 1.1450–1.1500
-2. **EUR/NOK:** Monitor for approach to 11.40–11.50 — could take several sessions
-3. **NOK/SEK:** Watch daily for a close back above 0.9962 (SMA50) or a pullback to 0.985–0.990 support
-4. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard for any central bank decisions or data releases that week
+1. **EUR/USD:** Monitor for bounce. Re-run entry confirmation when price recovers to 1.1380–1.1430 (Scenario A) or 1.1450–1.1500 (Scenario B). Always macro-check first.
+2. **EUR/NOK:** Monitor for gradual approach to 11.40–11.50. May take 5–10 sessions at current pace.
+3. **NOK/SEK:** Watch for pullback to 0.985–0.990 or daily close above 0.9962 (SMA50).
+4. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard for central bank decisions or data releases.
 
 ---
 
