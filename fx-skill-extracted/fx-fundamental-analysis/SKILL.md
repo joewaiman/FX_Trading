@@ -14,7 +14,7 @@ description: >
 
 # FX Fundamental Analysis Skill
 
-This skill systematically evaluates currencies using 7 core economic indicators to identify
+This skill systematically evaluates currencies using 8 core economic indicators to identify
 **long candidates** (strong fundamentals) and **short candidates** (weak fundamentals) for FX trading.
 
 ---
@@ -23,7 +23,7 @@ This skill systematically evaluates currencies using 7 core economic indicators 
 
 ```
 1. Select currencies to analyse
-2. Gather all 7 indicators per currency
+2. Gather all 8 indicators per currency
 3. Score each indicator (Bullish / Neutral / Bearish)
 4. Aggregate into an overall fundamental bias
 5. Output a ranked watchlist with commentary
@@ -33,10 +33,18 @@ This skill systematically evaluates currencies using 7 core economic indicators 
 
 ## Step 1 — Currency Universe
 
-Default universe — always analyse all of these unless the user specifies otherwise:
-`USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF, ILS, SGD, NOK, SEK, HKD`
+Default universe — always analyse all of these unless the user specifies otherwise.
 
-The user may expand to include: `CNH, MXN`
+**Tier 1 — G8 Majors (always scored fully):**
+`USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF`
+
+**Tier 2 — EM & Commodity Currencies (best-effort):**
+`NOK, SEK, SGD, PLN, HUF, DKK, MXN, INR, CNY, BRL, ILS`
+
+Tier 2 currencies are scored on the same 10-point framework wherever data is available.
+If fewer than 4 indicators can be sourced, flag the currency as ⚠️ Data-limited and note
+which indicators are missing. Always include Tier 2 in the output — never omit a currency
+due to missing data. A partial score is better than no score.
 
 **Important:** Gather data for **all currencies in the universe first** before proceeding to
 scoring or analysis. Do not score or rank mid-collection. Complete Step 2 fully across all
@@ -44,7 +52,35 @@ currencies, then move to Step 3.
 
 ---
 
-## Step 2 — The 7 Indicators
+## Inflation Targets Reference (verify monthly — targets can change)
+
+| Currency | Central Bank | Inflation Target | Measure | Notes |
+|---|---|---|---|---|
+| USD | Federal Reserve | 2.0% | PCE (primary) / CPI | |
+| EUR | European Central Bank | 2.0% | HICP | |
+| GBP | Bank of England | 2.0% | CPI | |
+| JPY | Bank of Japan | 2.0% | CPI | |
+| AUD | Reserve Bank of Australia | 2.0–3.0% (mid 2.5%) | CPI | Band target |
+| NZD | Reserve Bank of New Zealand | 1.0–3.0% (mid 2.0%) | CPI | Band target |
+| CAD | Bank of Canada | 2.0% (1–3% control range) | CPI | |
+| CHF | Swiss National Bank | 0–2% (price stability) | CPI | Avoids negative rates |
+| SEK | Riksbank (Sweden) | 2.0% | CPIF | CPIF = CPI with fixed mortgage rate |
+| NOK | Norges Bank (Norway) | 2.0% | CPI-ATE (core) | Oil-linked economy |
+| SGD | MAS (Singapore) | ~2% implicit | CPI | ⚠️ Uses S$NEER slope — see EM notes |
+| PLN | National Bank of Poland | 2.5% (±1% = 1.5–3.5%) | CPI | Band target |
+| HUF | National Bank of Hungary | 3.0% (±1% = 2–4%) | CPI | Band target |
+| DKK | Danmarks Nationalbank | n/a (EUR peg) | Mirrors ECB | ⚠️ ERM II peg — see EM notes |
+| MXN | Banco de Mexico (Banxico) | 3.0% (±1% = 2–4%) | CPI | Band target |
+| INR | Reserve Bank of India | 4.0% (±2% = 2–6%) | CPI | Wide band target |
+| CNY | People's Bank of China | ~3% (informal) | CPI | ⚠️ Managed currency — see EM notes |
+| BRL | Banco Central do Brasil | 3.0% (±1.5% = 1.5–4.5%) | IPCA | Band target |
+| ILS | Bank of Israel | 1.0–3.0% (mid 2.0%) | CPI | Band target |
+
+> **Band target scoring rule**: Score 🟢 if CPI is above the upper bound, 🟡 if within the band, 🔴 if below the lower bound.
+
+---
+
+## Step 2 — The 8 Indicators
 
 ### Data Collection Protocol
 
@@ -71,8 +107,23 @@ web_search → "{central bank name} rate decision outlook {current year}"
 This captures the forward guidance signal (hike / hold / cut) which is not always on the
 indicators page.
 
-Parallelism example — for 8 currencies, launch all 8 `web_fetch` calls in one batch, then
-follow up with targeted searches only where needed.
+Batching note — for 19 currencies, launch all 19 `web_fetch` calls in one batch, then
+follow up with targeted searches only where needed. If context limits apply, prioritise
+Tier 1 (8 majors) as batch 1, then Tier 2 (11 EM/commodity) as batch 2.
+
+**4. Weekly FX performance vs USD (run once, covers all 19 currencies):**
+```
+web_fetch → https://tradingeconomics.com/currencies
+```
+This page shows weekly % change for all major currency pairs vs USD. Extract the 7-day
+% change for each of the 19 basket currencies. If a currency is not listed (some EM pairs),
+use a targeted search:
+```
+web_search → "{currency}/USD weekly performance {current date}"
+```
+Record each value as a signed % (e.g. +1.2% or −0.8%). Run this fetch **once** alongside
+the 19 indicator fetches — do not re-fetch per currency. Store all 19 values before
+proceeding to Step 3.
 
 ---
 
@@ -100,7 +151,33 @@ Target band: **3.5% – 4.5%**
 - 🔴 Bearish: Rate above 5.5% (slack) OR trending sharply higher MoM
 - ⚠️ Also flag: Rate below 3.5% (overheating risk, may force aggressive hikes)
 
-### iii. GDP Growth
+### iii. Wages / Average Hourly Earnings
+| Data point | Where to find |
+|---|---|
+| Wage growth (YoY %) | Trading Economics / national stats / NFP report (USD) |
+| Real wage growth (wage growth minus CPI) | Calculate from above |
+
+Wage growth is a leading indicator for future inflation and consumer spending. Central banks watch it closely for second-round inflation effects.
+
+**Scoring:**
+- 🟢 Bullish: Wage growth accelerating OR real wages positive (wage growth > CPI) — supports consumption, signals labour market strength
+- 🟡 Neutral: Wage growth stable and roughly in line with inflation
+- 🔴 Bearish: Wage growth decelerating OR real wages negative (wage growth < CPI) — consumer squeeze, headwind for spending
+
+**EM note:** Wages data is often unavailable or infrequent for Tier 2 currencies. If unavailable, mark as ⚠️ Data-limited and skip this row — do not guess.
+
+**Key series by currency:**
+| Currency | Series |
+|---|---|
+| USD | Average Hourly Earnings (NFP report, monthly) |
+| EUR | Negotiated Wages (ECB, quarterly) |
+| GBP | Average Weekly Earnings (ONS, monthly) |
+| JPY | Labour Cash Earnings (monthly) |
+| AUD | Wage Price Index (quarterly) |
+| CAD | Average Hourly Wages (monthly) |
+| Others | Trading Economics → {country}/wages |
+
+### iv. GDP Growth
 | Metric | Threshold |
 |---|---|
 | QoQ annualised | >2% Bullish / 0–2% Neutral / <0% Bearish |
@@ -108,7 +185,7 @@ Target band: **3.5% – 4.5%**
 
 Note: Two consecutive negative QoQ prints = technical recession → strong Bearish signal.
 
-### iv. PMI — Manufacturing & Services (two numbers)
+### v. PMI — Manufacturing & Services (two numbers)
 Use the **S&P Global / Markit** PMI series (or ISM for USD).
 
 | Level | Signal |
@@ -120,7 +197,7 @@ Use the **S&P Global / Markit** PMI series (or ISM for USD).
 
 Score Manufacturing and Services separately. If they diverge significantly (e.g. Services strong / Manufacturing weak), note in commentary.
 
-### v. Retail Sales
+### vi. Retail Sales
 | Monthly MoM change | Signal |
 |---|---|
 | >+0.5% | 🟢 Bullish |
@@ -129,7 +206,7 @@ Score Manufacturing and Services separately. If they diverge significantly (e.g.
 
 Also note the YoY trend and whether the latest print beat or missed consensus.
 
-### vi. Balance of Trade
+### vii. Balance of Trade
 | Condition | Signal |
 |---|---|
 | Surplus and growing | 🟢 Bullish (net demand for currency) |
@@ -137,9 +214,9 @@ Also note the YoY trend and whether the latest print beat or missed consensus.
 | Deficit and narrowing | 🟡 Neutral |
 | Deficit and widening | 🔴 Bearish (net selling pressure on currency) |
 
-Note: For commodity-linked currencies (AUD, NZD, CAD, NOK), cross-reference terms of trade.
+Note: For commodity-linked currencies (AUD, NZD, CAD, NOK, BRL, MXN), cross-reference terms of trade. NOK/BRL/MXN are particularly sensitive to oil prices; AUD/NZD/BRL to iron ore and agricultural commodities.
 
-### vii. Trading Economics Commentary
+### viii. Trading Economics Commentary
 Fetch the country page from tradingeconomics.com (e.g. `tradingeconomics.com/united-states/indicators`).
 
 Extract:
@@ -157,6 +234,62 @@ https://tradingeconomics.com/{country}/inflation-cpi
 
 ---
 
+## EM Currency Special Considerations
+
+The 11 non-G8 currencies require modified scoring rules in some areas.
+
+### Unemployment Benchmarks (EM-adjusted)
+
+The 3.5–4.5% "healthy" band is calibrated for G10 economies. Use these adjusted thresholds:
+
+| Currency | Typical Range | Healthy (Neutral) Band | Bullish | Bearish |
+|---|---|---|---|---|
+| SEK | 7–10% | 7–8.5% | <7% | >10% |
+| NOK | 3–5% | 3–4.5% (use G10 band) | <3.5% | >5.5% |
+| SGD | 2–3.5% | 2–3% | <2%⚠️ overheating | >3.5% |
+| PLN | 3–6% | 4–6% | <4% | >7% |
+| HUF | 3–6% | 4–6% | <4% | >7% |
+| DKK | 4–7% | 4–6% | <4% | >7% |
+| MXN | 3–5% | 3.5–5% | <3.5% | >5.5% |
+| INR | 4–8% | 4–6% (survey data infrequent) | <4% | >8% |
+| CNY | 5–6% (official) | 5–6% | — | >6% |
+| BRL | 6–14% | 8–10% | <8% | >12% |
+| ILS | 3–5% | 3.5–5% | <3.5% | >5.5% |
+
+### SGD — Exchange Rate Policy (Not Interest Rate Policy)
+
+The MAS uses the **S$NEER slope** as its only policy tool — not a policy rate. Standard rate
+bias scoring is replaced with:
+- 🟢 Bullish: MAS steepened the S$NEER slope or re-centred upward (tightening)
+- 🟡 Neutral: MAS held slope and width unchanged
+- 🔴 Bearish: MAS flattened or eased the slope (loosening)
+
+Search query: `"MAS monetary policy statement {year} S$NEER slope"`
+
+### DKK — EUR Peg (ERM II Band ±2.25%)
+
+DKK is pegged to EUR. **Score DKK identically to EUR** — no independent analysis needed.
+Flag in output: *"DKK mirrors EUR (ERM II peg — independent scoring not applicable)."*
+
+### CNY — Managed / Partially Convertible Currency
+
+The PBOC sets a daily fixing rate with a ±2% intraday band. Fundamentals are less
+predictive of CNY moves than for free-floating currencies. Score as normal but add flag:
+*"CNY: PBOC-managed — policy discretion may override fundamental signals."*
+
+### Pair Construction — Liquidity Constraints
+
+When building pairs from the full 19-currency universe:
+- **Prefer EM vs USD or EUR** for adequate liquidity (spreads, hedging)
+- **Avoid EM-vs-EM crosses** — spreads are wide (e.g. BRL/MXN, INR/HUF are illiquid)
+- **Liquid EM FX pairs**: USD/MXN, USD/BRL, USD/INR (NDF), USD/CNH, EUR/PLN, EUR/HUF, USD/ILS, USD/SGD
+- **Semi-liquid DM crosses**: EUR/NOK, EUR/SEK, NOK/SEK, USD/NOK, USD/SEK
+- DKK pairs: EUR/DKK has minimal range due to the peg — skip unless flagging peg stress
+
+Flag any low-liquidity pair recommendations in the output.
+
+---
+
 ## Step 3 — Scoring Matrix
 
 After gathering all indicators, score each one and produce a table:
@@ -169,6 +302,7 @@ Currency: [XXX]
 │ Inflation vs Target     │ 🟢/🟡/🔴 │ CPI x.x% vs target x.x%     │
 │ Interest Rate Bias      │ 🟢/🟡/🔴 │ Rate x.xx%, next move: hike  │
 │ Unemployment            │ 🟢/🟡/🔴 │ x.x%, trend: ↑/↓/→          │
+│ Wages                   │ 🟢/🟡/🔴 │ YoY x.x%, real: +/-x.x%     │
 │ GDP Growth              │ 🟢/🟡/🔴 │ QoQ x.x%, YoY x.x%          │
 │ PMI Manufacturing       │ 🟢/🟡/🔴 │ xx.x                         │
 │ PMI Services            │ 🟢/🟡/🔴 │ xx.x                         │
@@ -176,7 +310,7 @@ Currency: [XXX]
 │ Trade Balance           │ 🟢/🟡/🔴 │ $xB surplus/deficit          │
 │ TE Commentary           │ 🟢/🟡/🔴 │ Summary sentence             │
 ├─────────────────────────┼─────────┼──────────────────────────────┤
-│ OVERALL BIAS            │ BULL/BEAR/NEUTRAL │ X/9 bullish        │
+│ OVERALL BIAS            │ BULL/BEAR/NEUTRAL │ X/10 bullish       │
 └─────────────────────────┴─────────┴──────────────────────────────┘
 ```
 
@@ -185,7 +319,7 @@ Currency: [XXX]
 When analysing a basket of currencies, present a single comparison table with the following column order:
 
 ```
-│ Currency │ Rate (%) │ Inflation (%) │ CPI vs Target │ Rate Bias │ Unemployment │ GDP ann. │ Mfg PMI │ Svcs PMI │ Retail MoM │ Trade Balance │ Score │
+│ Currency │ Rate (%) │ Inflation (%) │ CPI vs Target │ Rate Bias │ Unemployment │ Wages YoY │ GDP ann. │ Mfg PMI │ Svcs PMI │ Retail MoM │ Trade Balance │ Score │
 ```
 
 - **Rate (%)**: Current central bank policy rate
@@ -195,29 +329,46 @@ When analysing a basket of currencies, present a single comparison table with th
 
 The Inflation (%) column is a raw data column — it provides the actual figure so the CPI vs Target score can be read in context.
 
-**Aggregate scoring (out of 9):**
-- 7–9 🟢 = **Strong Bullish** → Long candidate
-- 5–6 🟢 = **Mild Bullish** → Tentative long
+**Aggregate scoring (out of 10):**
+- 8–10 🟢 = **Strong Bullish** → Long candidate
+- 5–7 🟢 = **Mild Bullish** → Tentative long
 - Mix of 🟢🔴 = **Conflicted** → Neutral / avoid
-- 5–6 🔴 = **Mild Bearish** → Tentative short
-- 7–9 🔴 = **Strong Bearish** → Short candidate
+- 5–7 🔴 = **Mild Bearish** → Tentative short
+- 8–10 🔴 = **Strong Bearish** → Short candidate
 
 ---
 
 ## Step 4 — Pair Construction
 
-Once you have biases for all analysed currencies, construct all valid pairs:
+Once you have biases for all analysed currencies, construct all valid pairs.
 
-**Long/short combinations — present every valid setup:**
+**Entry eligibility rule — applies before building the pair list:**
+
+A currency is only eligible as a trade candidate if its score is **clearly directional**:
+
+| Score | Long eligible? | Short eligible? |
+|---|---|---|
+| Strong Bullish (8–10 🟢) | ✅ Yes | ❌ No |
+| Mild Bullish (5–7 🟢) | ✅ Yes | ❌ No |
+| Conflicted (roughly equal 🟢 and 🔴) | ❌ No — exclude from pairs | ❌ No — exclude from pairs |
+| Neutral (mostly 🟡) | ❌ No | ❌ No |
+| Mild Bearish (5–7 🔴) | ❌ No | ✅ Yes |
+| Strong Bearish (8–10 🔴) | ❌ No | ✅ Yes |
+
+**Conflicted currencies must be excluded from all pair recommendations.** A Conflicted score means the data is sending mixed signals — the thesis has not resolved clearly enough to support a trade. Flag Conflicted currencies in the output as "watch — not yet tradeable."
+
+**Long/short combinations — using only eligible currencies:**
 ```
 Strong Bullish vs Strong Bearish = Highest conviction pair
 Strong Bullish vs Mild Bearish   = Medium conviction
 Mild Bullish   vs Strong Bearish = Medium conviction
+Mild Bullish   vs Mild Bearish   = Lower conviction — flag as such
 ```
 
-Present **all** valid pairs ranked by conviction differential — do not cap the list.
-A larger universe means more opportunities; include every non-neutral vs non-neutral combination.
-Group by conviction tier (High / Medium) for readability.
+**Thesis deterioration flag:** For any pair currently in a live trade, explicitly compare this week's score against last week's. If the short leg's score is moving toward Conflicted (gap narrowing), flag it as ⚠️ Thesis deteriorating and recommend reassessing the position.
+
+Present **all** valid pairs ranked by conviction differential.
+Group by conviction tier (High / Medium / Low) for readability.
 
 ---
 
@@ -233,6 +384,25 @@ Group by conviction tier (High / Medium) for readability.
 │ GBP      │ 🟡 Neutral       │ Mixed signals, services PMI resilient     │
 │ ...      │ ...              │ ...                                       │
 └──────────┴──────────────────┴───────────────────────────────────────────┘
+```
+
+### Weekly Performance vs USD
+
+Immediately after the Summary Watchlist Table, present this ranked performance table.
+Sort by weekly % change descending (strongest to weakest). USD is the baseline (0.0%).
+
+```
+┌──────────┬─────────────────┬──────┐
+│ Currency │ Weekly % vs USD │ Rank │
+├──────────┼─────────────────┼──────┤
+│ AUD      │ +1.8%           │  1   │
+│ NZD      │ +1.3%           │  2   │
+│ EUR      │ +1.2%           │  3   │
+│ GBP      │ +0.4%           │  4   │
+│ USD      │  0.0%           │  —   │
+│ JPY      │ −0.3%           │ 12   │
+│ ...      │ ...             │ ...  │
+└──────────┴─────────────────┴──────┘
 ```
 
 ### Top Pairs
@@ -254,6 +424,7 @@ summarising the fundamental case. Reference specific data points.
 - Prefer the most recent release (check if more recent data is available via web search)
 - Flag if any indicator is >45 days old — data may be stale
 - Note scheduled releases that could change the picture (use economic calendar)
+- **Tier 2 data gap rule:** If >2 indicators are missing or stale for a Tier 2 currency, mark its score ⚠️ and list the gaps explicitly. Still include the currency in the output.
 
 ---
 

@@ -4,16 +4,33 @@
 
 Use `web_fetch` on these URLs. Replace `{country}` with the lowercase country name.
 
-### Country Indicators Dashboard
+### Country Indicators Dashboard — Full 19-Currency Universe
+
+**G8 Currencies:**
 ```
-https://tradingeconomics.com/united-states/indicators
-https://tradingeconomics.com/euro-area/indicators
-https://tradingeconomics.com/united-kingdom/indicators
-https://tradingeconomics.com/japan/indicators
-https://tradingeconomics.com/australia/indicators
-https://tradingeconomics.com/new-zealand/indicators
-https://tradingeconomics.com/canada/indicators
-https://tradingeconomics.com/switzerland/indicators
+https://tradingeconomics.com/united-states/indicators      (USD)
+https://tradingeconomics.com/euro-area/indicators          (EUR)
+https://tradingeconomics.com/united-kingdom/indicators     (GBP)
+https://tradingeconomics.com/japan/indicators              (JPY)
+https://tradingeconomics.com/australia/indicators          (AUD)
+https://tradingeconomics.com/new-zealand/indicators        (NZD)
+https://tradingeconomics.com/canada/indicators             (CAD)
+https://tradingeconomics.com/switzerland/indicators        (CHF)
+```
+
+**Extended Universe (SEK, NOK, SGD, PLN, HUF, DKK, MXN, INR, CNY, BRL, ILS):**
+```
+https://tradingeconomics.com/sweden/indicators             (SEK)
+https://tradingeconomics.com/norway/indicators             (NOK)
+https://tradingeconomics.com/singapore/indicators          (SGD)
+https://tradingeconomics.com/poland/indicators             (PLN)
+https://tradingeconomics.com/hungary/indicators            (HUF)
+https://tradingeconomics.com/denmark/indicators            (DKK)
+https://tradingeconomics.com/mexico/indicators             (MXN)
+https://tradingeconomics.com/india/indicators              (INR)
+https://tradingeconomics.com/china/indicators              (CNY)
+https://tradingeconomics.com/brazil/indicators             (BRL)
+https://tradingeconomics.com/israel/indicators             (ILS)
 ```
 
 ### Specific Indicator Pages
@@ -33,14 +50,16 @@ https://tradingeconomics.com/switzerland/indicators
 Use these for `web_search` when you need the latest data:
 
 ```
-"{country} CPI inflation latest 2025"
+"{country} CPI inflation latest {current year}"
 "{country} unemployment rate latest"
-"{country} GDP growth Q{n} 2025"
-"{country} manufacturing PMI {month} 2025"
-"{country} services PMI {month} 2025"
-"{country} retail sales {month} 2025"
+"{country} GDP growth Q{n} {current year}"
+"{country} manufacturing PMI {month} {current year}"
+"{country} services PMI {month} {current year}"
+"{country} retail sales {month} {current year}"
 "{country} trade balance latest"
-"{central bank name} rate decision latest"
+"{central bank name} rate decision {current year} outlook"
+"MAS monetary policy statement {current year} S$NEER slope"  (SGD only)
+"PBOC fixing rate yuan {current year}"                        (CNY only)
 ```
 
 ## Supplementary Sources
@@ -64,6 +83,20 @@ Use these for `web_search` when you need the latest data:
 | NZD | BNZ / BusinessNZ | Published monthly |
 | CAD | S&P Global Canada PMI | |
 | CHF | procure.ch PMI | Manufacturing only; limited services data |
+| SEK | S&P Global Sweden PMI | Mfg + Services available |
+| NOK | S&P Global Norway PMI | Mfg primarily; services less regular |
+| SGD | S&P Global Singapore PMI | Mfg PMI well-covered; services patchy |
+| PLN | S&P Global Poland Manufacturing PMI | Manufacturing only (no services PMI) |
+| HUF | S&P Global Hungary Manufacturing PMI | Manufacturing only (no services PMI) |
+| DKK | S&P Global Denmark PMI | Limited — use EUR as proxy if unavailable |
+| MXN | S&P Global Mexico Manufacturing PMI | Manufacturing only |
+| INR | S&P Global India PMI | Both Mfg and Services available |
+| CNY | Caixin China PMI (S&P Global) | Use Caixin (private sector), not NBS official PMI, for market signals |
+| BRL | S&P Global Brazil Manufacturing PMI | Manufacturing only; services less covered |
+| ILS | S&P Global Israel PMI | Manufacturing; services less regular |
+
+> **If PMI data is unavailable** for an extended currency, mark the field as N/A and adjust the
+> score denominator accordingly (score out of 8 instead of 9 if one PMI is missing, 7 if both missing).
 
 ## Economic Calendar
 

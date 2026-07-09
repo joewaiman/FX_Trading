@@ -28,11 +28,11 @@ Phase 0: Collect live data via TradingView MCP
          ↓
 Weekly → Daily → 4H
          ↓
-Step 1: Identify the Channel (trend direction)
-Step 2: Map key Support & Resistance levels
-Step 3: RSI & momentum readings
-Step 4: Entry trigger — candlestick pattern confirmation
-Step 5: Trade setup — entry, stop loss, take profit, R:R
+Phase 1: Identify the Channel (trend direction)
+Phase 2: Map key Support & Resistance levels
+Phase 3: RSI & momentum readings
+Phase 4: Entry trigger — candlestick pattern confirmation
+Phase 5: Trade setup — entry, stop loss, take profit, R:R
 ```
 
 ---
@@ -40,6 +40,8 @@ Step 5: Trade setup — entry, stop loss, take profit, R:R
 ## Phase 0 — TradingView MCP Data Collection
 
 Run this before any analysis. It replaces manual chart description with live data.
+
+> **If TradingView MCP is unavailable:** ask the user to describe the chart (pair, timeframe, SMA positions, RSI level, recent swing highs/lows). Proceed from Step 1 using the described data, noting that values are user-reported rather than live.
 
 ### Prerequisites (one-time manual setup)
 
@@ -52,26 +54,30 @@ SMA periods **cannot be set programmatically** via MCP — `chart_manage_indicat
 
 If the SMAs are already on the chart with correct periods, skip to 0.1.
 
-### 0.1 — Confirm chart state
+### 0.1 — Confirm chart state and record original timeframe
 
 ```
 chart_get_state
 ```
 
-- Confirms the symbol and current timeframe
-- Returns entity IDs for all active indicators
-- The two SMAs will appear as "Simple Moving Average" in order — **first = SMA20, second = SMA50**
-  (based on the order they were added to the chart)
+- Confirms the symbol and **current timeframe — record this to restore later**
+- Returns entity IDs and names for all active indicators
+- Identify the two SMAs by inspecting the returned indicator names. Match them by period:
+  - Find the entity whose name or inputs show `length: 20` → this is **SMA20**
+  - Find the entity whose name or inputs show `length: 50` → this is **SMA50**
+  - Do not rely on position order — layout changes or saved templates can reorder indicators
+  - **Verify SMA periods:** confirm the returned inputs show `length: 20` and `length: 50`. If the periods are wrong, ask the user to correct them in TradingView before proceeding.
 
 ### 0.2 — Ensure RSI is on the chart
 
 If RSI is not in the `chart_get_state` output, add it:
 ```
-chart_manage_indicator  action="add"  indicator="Relative Strength Index"  inputs={"length": 14}
+chart_manage_indicator  action="add"  indicator="Relative Strength Index"
 ```
 
-> Note: Requires a TradingView plan that supports enough indicators per chart (Premium or above).
-> If the add fails, ask the user to add RSI manually.
+> Note: The `inputs` parameter works for RSI period but **not** for SMA period/length — SMA periods
+> must be set manually in TradingView. Requires a TradingView plan with enough indicators per chart
+> (Premium or above). If the add fails, ask the user to add RSI manually.
 
 ### 0.3 — Collect data across all three timeframes
 
@@ -80,20 +86,26 @@ For each timeframe (W, 1D, 4H), run in sequence:
 ```
 chart_set_timeframe  timeframe="W"
 data_get_ohlcv       summary=true          ← swing structure (highs/lows)
-data_get_study_values                       ← SMA(20), SMA(50) values
+data_get_study_values                       ← SMA(20), SMA(50) values on weekly bars
 
 chart_set_timeframe  timeframe="1D"
 data_get_ohlcv       summary=true
-data_get_study_values                       ← SMA(20), SMA(50), RSI(14)
+data_get_study_values                       ← SMA(20), SMA(50), RSI(14) on daily bars
 
 chart_set_timeframe  timeframe="240"
 data_get_ohlcv       summary=true
-data_get_study_values                       ← SMA(20), RSI(14)
+data_get_study_values                       ← SMA(20), SMA(50), RSI(14) on 4H bars
 
 quote_get                                   ← current bid/ask/last price
 ```
 
-> Restore the user's original timeframe after collection with `chart_set_timeframe`.
+> The same SMA indicator displays values for the active timeframe's bars — SMA(20) on Weekly = 20-week
+> MA; on Daily = 20-day MA. Values will differ significantly across timeframes; this is expected.
+
+> Weekly RSI is not collected — the Weekly timeframe is used for swing structure and SMA position only.
+
+> After collection, restore the original timeframe recorded in 0.1:
+> `chart_set_timeframe  timeframe="[original]"`
 
 ### 0.4 — Optional: Screenshot
 
@@ -105,7 +117,7 @@ Useful for documenting the analysis or when sharing the output.
 
 ---
 
-## Step 1 — Identify the Channel
+## Phase 1 — Identify the Channel
 
 **Objective:** Determine trend direction on each timeframe using OHLCV swing structure + SMA position.
 
@@ -134,11 +146,20 @@ Useful for documenting the analysis or when sharing the output.
 2. **Daily** — confirm primary trend. Check 20 & 50 SMA slope and price position.
 3. **4H** — locate micro-channel for entry. A 4H trend opposing the Weekly/Daily = retracement only.
 
-**Alignment rule:** All three timeframes aligned = high conviction. Conflict = wait or reduce size.
+**Alignment rules:**
+- **All three aligned** → high conviction. Enter on trigger at 4H S&R.
+- **Weekly + Daily aligned, 4H opposing** → 4H is a retracement within the larger trend. This is the preferred entry scenario — wait for price to reach a 4H S&R level that coincides with the direction of the Weekly/Daily trend, then look for a trigger candle.
+- **Weekly aligned, Daily + 4H opposing** → too early. Wait for Daily to confirm before acting.
+- **All three conflicting or sideways** → no trade. Revisit after next major session close.
 
 ---
 
-## Step 2 — Map Key Support & Resistance Levels
+## Phase 2 — Map Key Support & Resistance Levels
+
+> **Specialist skill available:** For detailed S&R zone drawing, channel boundary identification, or
+> Head & Shoulders pattern analysis, invoke the `fx-support-resistance` skill. The summary below
+> covers the essentials for a standard trade setup; use the specialist skill when deeper zone mapping
+> is needed.
 
 **Objective:** Identify price levels where reactions are most likely, ordered by strength.
 
@@ -165,7 +186,7 @@ List the nearest 4–6 levels to current price:
 
 ---
 
-## Step 3 — RSI & Momentum Readings
+## Phase 3 — RSI & Momentum Readings
 
 **Objective:** Confirm whether momentum supports the channel bias, and flag exhaustion or divergence.
 
@@ -201,7 +222,12 @@ Momentum alignment: Confirms bias / Stretched — wait for pullback / Divergence
 
 ---
 
-## Step 4 — Entry Trigger
+## Phase 4 — Entry Trigger
+
+> **Specialist skill available:** The table below is a quick-reference only. For pattern validation
+> (wick ratios, body position, multi-candle confirmation), invoke the `fx-candlestick-patterns` skill.
+> This skill provides the gate logic — *where* and *when* to look for a trigger. The specialist skill
+> validates *whether* the pattern qualifies.
 
 **Objective:** Wait for a specific candlestick signal at a key S&R level before committing to a trade.
 
@@ -221,9 +247,24 @@ defines the stop loss level precisely.
 |---|---|---|
 | **Pin Bar** | Long lower wick at support, small body near top | Long upper wick at resistance, small body near bottom |
 | **Engulfing** | Bullish candle fully engulfs prior bearish candle body | Bearish candle fully engulfs prior bullish candle body |
-| **Inside Bar Breakout** | Small candle inside prior bar; break above the high | Small candle inside prior bar; break below the low |
+| **Inside Bar Breakout** | Small candle inside prior bar; pending buy stop above mother bar high | Small candle inside prior bar; pending sell stop below mother bar low |
 
 > For visual examples and pattern details → `references/concepts.md`
+
+**Volume confirmation:** Phase 0 uses `summary=true` which returns aggregated data only — it does not include per-bar volume. For the volume check, call `data_get_ohlcv` on the trigger timeframe **without** `summary=true`. Check that the trigger candle's volume is visibly higher than the preceding 3–5 bars. Higher volume strengthens the signal; flat or falling volume reduces confidence.
+
+### If No Trigger Yet
+
+When no valid trigger has formed, do not wait passively. Instead:
+
+1. Note the exact S&R level to watch (from Step 2)
+2. Set an alert on TradingView:
+   ```
+   alert_create  symbol=[PAIR]  price=[S&R level]  condition="crossing"
+                 message="[PAIR] approaching [level] — check for trigger candle"
+   ```
+3. Record the pair in the watchlist with status "Awaiting trigger at [level]"
+4. Revisit when the alert fires
 
 ### No-Entry Conditions
 
@@ -231,10 +272,11 @@ defines the stop loss level precisely.
 - Trigger candle forms away from any key S&R level
 - RSI is deeply oversold (< 25) on a short setup, or deeply overbought (> 75) on a long setup
 - Daily and Weekly channels are in direct conflict with no clear resolution
+- A major scheduled release is due within 4 hours (NFP, CPI, central bank rate decision) — wait for the release before entering; the candle that forms immediately after the release is not a valid trigger (too much noise)
 
 ---
 
-## Step 5 — Trade Setup
+## Phase 5 — Trade Setup
 
 **Objective:** Define the exact entry, stop loss, and take profit levels. Confirm the risk/reward is acceptable.
 
@@ -245,12 +287,19 @@ defines the stop loss level precisely.
 
 ### Stop Loss
 
-Place stop loss **beyond the trigger candle's extreme**, with a small buffer:
+Place stop loss at the **nearest structural level that invalidates the trade thesis** — not just beyond the trigger candle's wick.
 
 | Trade Direction | Stop Loss Placement |
 |---|---|
-| Long | Below the lowest wick of the trigger candle, minus 5–10 pips buffer |
-| Short | Above the highest wick of the trigger candle, plus 5–10 pips buffer |
+| Long | Below the nearest swing low / support zone that, if broken, means the bullish thesis is wrong + 5–10 pip buffer |
+| Short | Above the nearest swing high / resistance zone that, if broken, means the bearish thesis is wrong + 5–10 pip buffer |
+
+**Structural invalidation means:** if price closes beyond this level, the reason for the trade no longer exists. Examples:
+- Short thesis based on price being below Weekly SMA50 → SL above the Weekly SMA50
+- Short from a resistance zone → SL above the top of that zone, not just above the trigger candle wick
+- Long from a support zone → SL below the bottom of that zone
+
+The trigger candle's wick sets the **minimum** SL distance. If the structural invalidation level is further away, use that instead — which it usually will be.
 
 Never place stop loss at a round number (too obvious a target for stop hunts).
 
@@ -316,9 +365,10 @@ Momentum: Confirms / Stretched / Divergence
 ENTRY TRIGGER
 ─────────────────────────────────────────────────
 Trigger pattern: [Pin Bar / Engulfing / Inside Bar / None yet]
-Location: [S&R level where it formed]
+Location: [S&R level where it formed, or level to watch if None yet]
 Timeframe: [4H / Daily]
 Valid: Yes / No — [reason if No]
+Next action: [Enter now / Alert set at x.xxxxx / Awaiting trigger / No trade — see notes]
 
 TRADE SETUP
 ─────────────────────────────────────────────────
