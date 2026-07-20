@@ -38,21 +38,23 @@ NOK also softened independently (retail sales –2.1% MoM; PMI series still disc
 
 ---
 
-## ⚠️ Unresolved — The Scoring Rule Contradicts Itself
+## ✅ Resolved (2026-07-21) — The Scoring Rule is now a single net-score
 
-`CLAUDE.md` defines the bias thresholds in two incompatible places; the skill defines them a third way:
+The bias thresholds used to be defined three incompatible ways (`CLAUDE.md:88` absolute 5–6🟢; `CLAUDE.md:217` relative; skill Step 3 absolute 5–7🟢). The two absolute rules had a real bug — they counted greens and ignored reds, so a 5🟢/5🔴 currency scored "Mild Bullish."
 
-| Source | Mild Bullish | Mild Bearish |
+**Decision (Joe): one net-score rule replaces all three.** Let **N = (🟢 count − 🔴 count)** across the 10 indicators:
+
+| N | Class | Leg valid? |
 |---|---|---|
-| `CLAUDE.md` line 88 | 5–6 🟢 | 5–6 🔴 |
-| `CLAUDE.md` line 217 (entry gate) | more 🟢 than 🔴 | more 🔴 than 🟢 |
-| `fx-fundamental-analysis` skill, Step 3 | 5–7 🟢 | 5–7 🔴 |
+| ≥ +5 | Strong Bullish | ✅ long |
+| +2 to +4 | Mild Bullish | ✅ long |
+| −1 to +1 | **Conflicted** | ❌ neither |
+| −2 to −4 | Mild Bearish | ✅ short |
+| ≤ −5 | Strong Bearish | ✅ short |
 
-**This week it decides everything.** Under the strict count rule, **no currency reaches 5🔴** — there are no valid short legs and the correct output is *"nothing to trade."* Under the relative rule there are three good pairs.
+Direction = sign of N; strength = magnitude; a valid leg needs |N| ≥ 2 (a 4-3 edge is Conflicted). Synced to `CLAUDE.md:88` + `:217` and both `fx-fundamental-analysis` SKILL.md copies (live + `fx-skill-extracted`).
 
-W28 was scored under the **relative rule (line 217)**, since that is the one written into the entry gate. Currencies whose classification flips between rules are marked ⚖️ in the W28 file: NOK, BRL, CHF, SEK, HUF, CNY.
-
-**Must be settled before the next scan.**
+**Effect on the W30 scan:** direction calls are unchanged (it was scored on the relative sign), so the tradeable conclusions — short-EUR, USD/CNH — stand. Only the labels tidy up under the magnitude bands: **JPY (+6), NOK (+5), SEK (+5) firm to Strong Bullish**; the ⚖️ borderlines resolve (GBP +4 clean Mild Bull; HUF +1 and ILS −1 become Conflicted; PLN/MXN/BRL/CAD sit at +2 = weak Mild Bull). W30's ⚖️ marks can be read as "now settled," not "pending."
 
 ---
 
@@ -179,9 +181,11 @@ This was the thread picked back up on 2026-07-21. It was **not a one-file typo**
 
 ## Open Trades
 
-None currently open **in reality** — but ⚠️ **Supabase still flags CHFJPY and AUDNZD as `active`.**
+**None open. 0 of 4 slots used.**
 
-Both resolved in May 2026 and were never closed in the DB:
+> **Note (2026-07-21):** Joe does **not** use Supabase — ignore any DB/`close_may_trades.py`/phantom-`active`-row references in older files. Trade state is tracked here in CONTEXT.md, not in a database.
+
+Last resolved trades (May 2026), for the record:
 
 | Pair | Dir | Entry | Outcome | Result |
 |------|-----|-------|---------|--------|
@@ -189,8 +193,6 @@ Both resolved in May 2026 and were never closed in the DB:
 | CHFJPY | SHORT | 202.318 (22 May) | ❌ Loss — stopped out | −26.0 pips / −1.00R |
 
 Net: **+0.10R**.
-
-**Action required:** run `python close_may_trades.py` (needs a network that resolves the Supabase host) to reconcile. Until then, any query of open trades — including Step 3 of `workflows/daily-check.md` — returns two phantom positions and wrongly consumes 2 of the 4 open-trade slots.
 
 **CHFJPY post-mortem:** a 26-pip stop on a pair with a ~130-pip daily range was noise-width, not structure-width. Direction was right (price back at 201.3 by 2026-07-09, well below the 202.318 entry) — the stop was too tight to survive the path. See the max-stop-width and structural-stop rules in `CLAUDE.md`.
 
@@ -215,12 +217,10 @@ Net: **+0.10R**.
 **Take no position today.** The chart selected EUR/USD; the chart has not yet triggered it.
 
 1. **EUR/USD has no live setup** (the 15:15 rerun abandoned it; see above). If you want the EUR short, **re-read EUR/USD from scratch** after the 23 Jul ECB — watch for a 4H close below 1.14180. Do not use the old 1.1448 alert.
-2. **Settle the scoring-rule conflict** in `CLAUDE.md` (line 88 vs line 217 vs skill Step 3). Too large a difference to leave open — it decides whether this week has three trades or zero.
-3. **Reconcile Supabase** — `close_may_trades.py` still unrun; two phantom `active` rows wrongly consume 2 of 4 open-trade slots. Do this before logging anything new.
-4. **Optional: chart USD/CNH** — the only non-EUR candidate, if you want a second uncorrelated position. Fundamentals done, technicals not.
-5. **Set an August RBA reminder** — one more AUD deterioration unlocks NZD/AUD long.
-6. **Re-check any open position against the ECB on 23 July.**
-7. **Commit the W28 work** — `analysis/2026-07-09-W28-technical.md`, `analysis/2026-07-08-shortlist-technical.md` and `fundamental-analysis/2026-W28.md` are all still untracked.
+2. **Optional: chart USD/CNH** — the only non-EUR candidate, if you want a second uncorrelated position. Fundamentals done, technicals not.
+3. **Set an August RBA reminder** — one more AUD deterioration unlocks NZD/AUD long.
+
+*Both config contradictions are now resolved: R:R floor = 1.5:1, and the fundamental bias rule = net-score N (see the two ✅ sections above).*
 
 ---
 

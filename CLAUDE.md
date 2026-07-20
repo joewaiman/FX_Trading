@@ -85,7 +85,7 @@ Scores all 19 currencies across 10 indicators — inflation vs target, rate bias
 - **Tier 1 (G8 majors):** USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF — always scored fully
 - **Tier 2 (EM/commodity):** NOK, SEK, SGD, PLN, HUF, DKK, MXN, INR, CNY, BRL, ILS — best-effort
 
-Scoring: 7–9 bullish = Strong Bullish, 5–6 = Mild Bullish, mix = Neutral, 5–6 bearish = Mild Bearish, 7–9 = Strong Bearish.
+Scoring — **net score N = (🟢 count − 🔴 count)** across the 10 indicators: **N ≥ +5** = Strong Bullish, **+2 to +4** = Mild Bullish, **−1 to +1** = Conflicted (do not trade either leg), **−2 to −4** = Mild Bearish, **N ≤ −5** = Strong Bearish. Direction = sign of N; strength = magnitude. The green count alone is never the classifier — a 5🟢/5🔴 currency is Conflicted (N=0), not Bullish.
 
 Data source hierarchy: **Trading Economics** → central bank publications → Bloomberg/Reuters.
 
@@ -214,10 +214,10 @@ A trade should only be entered when **both legs have a clear directional score**
 
 | Leg | Minimum score required | Conflicted = ? |
 |---|---|---|
-| Short currency | Mild Bearish (more 🔴 than 🟢) | ❌ Do not short — wait for score to resolve |
-| Long currency | Mild Bullish (more 🟢 than 🔴) | ❌ Do not long — wait for score to resolve |
+| Short currency | Mild Bearish (net **N ≤ −2**) | ❌ Do not short — wait for score to resolve |
+| Long currency | Mild Bullish (net **N ≥ +2**) | ❌ Do not long — wait for score to resolve |
 
-A **Conflicted** score (roughly equal 🟢 and 🔴, e.g. 3 vs 3) means the market has mixed signals on that currency. Do not enter a trade where either leg is Conflicted — the thesis has not formed clearly enough to risk capital.
+A **Conflicted** score (net **N between −1 and +1** — e.g. 3🟢 vs 3🔴, or mostly 🟡) means the market has mixed signals on that currency. Do not enter a trade where either leg is Conflicted — the thesis has not formed clearly enough to risk capital.
 
 **Thesis deterioration rule (for open trades):**
 

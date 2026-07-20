@@ -329,12 +329,14 @@ When analysing a basket of currencies, present a single comparison table with th
 
 The Inflation (%) column is a raw data column — it provides the actual figure so the CPI vs Target score can be read in context.
 
-**Aggregate scoring (out of 10):**
-- 8–10 🟢 = **Strong Bullish** → Long candidate
-- 5–7 🟢 = **Mild Bullish** → Tentative long
-- Mix of 🟢🔴 = **Conflicted** → Neutral / avoid
-- 5–7 🔴 = **Mild Bearish** → Tentative short
-- 8–10 🔴 = **Strong Bearish** → Short candidate
+**Aggregate scoring — net score N = (🟢 count) − (🔴 count) across the 10 indicators:**
+- **N ≥ +5** = **Strong Bullish** → Long candidate
+- **N +2 to +4** = **Mild Bullish** → Tentative long
+- **N −1 to +1** = **Conflicted** → Neutral / avoid (do not trade either leg)
+- **N −2 to −4** = **Mild Bearish** → Tentative short
+- **N ≤ −5** = **Strong Bearish** → Short candidate
+
+Direction comes from the **sign** of N (matches the entry gate in `CLAUDE.md`); Strong vs Mild from its **magnitude**. Yellows count as neither — they widen the Conflicted band, which is correct: a currency scoring mostly 🟡 has no clear thesis. Note N uses the net, so a 5🟢/5🔴 currency is **Conflicted (N=0)**, not Bullish — the green count alone is never the classifier.
 
 ---
 
@@ -348,12 +350,11 @@ A currency is only eligible as a trade candidate if its score is **clearly direc
 
 | Score | Long eligible? | Short eligible? |
 |---|---|---|
-| Strong Bullish (8–10 🟢) | ✅ Yes | ❌ No |
-| Mild Bullish (5–7 🟢) | ✅ Yes | ❌ No |
-| Conflicted (roughly equal 🟢 and 🔴) | ❌ No — exclude from pairs | ❌ No — exclude from pairs |
-| Neutral (mostly 🟡) | ❌ No | ❌ No |
-| Mild Bearish (5–7 🔴) | ❌ No | ✅ Yes |
-| Strong Bearish (8–10 🔴) | ❌ No | ✅ Yes |
+| Strong Bullish (N ≥ +5) | ✅ Yes | ❌ No |
+| Mild Bullish (N +2 to +4) | ✅ Yes | ❌ No |
+| Conflicted (N −1 to +1, incl. mostly 🟡) | ❌ No — exclude from pairs | ❌ No — exclude from pairs |
+| Mild Bearish (N −2 to −4) | ❌ No | ✅ Yes |
+| Strong Bearish (N ≤ −5) | ❌ No | ✅ Yes |
 
 **Conflicted currencies must be excluded from all pair recommendations.** A Conflicted score means the data is sending mixed signals — the thesis has not resolved clearly enough to support a trade. Flag Conflicted currencies in the output as "watch — not yet tradeable."
 
