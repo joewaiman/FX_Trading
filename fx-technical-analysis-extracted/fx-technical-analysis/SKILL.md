@@ -319,7 +319,7 @@ Target distance = |Take profit − Entry price|
 R:R ratio = Target distance ÷ Stop distance
 ```
 
-**Minimum acceptable R:R: 1:2** (risk 1 to make 2). If R:R < 1:2, skip the trade.
+**Minimum acceptable R:R: 1.5:1** (risk 1 to make 1.5; prefer 2:1 or better). If R:R < 1.5:1, skip the trade.
 
 > Position sizing and leverage are outside the scope of this skill. Apply your own risk management rules.
 
@@ -376,7 +376,7 @@ Direction:   LONG / SHORT
 Entry:       x.xxxxx  ([aggressive/conservative])
 Stop Loss:   x.xxxxx  ([X] pips risk)
 Take Profit: x.xxxxx  ([Y] pips target)
-R:R Ratio:   1:[Z]   → [Accept / Reject — below 1:2 minimum]
+R:R Ratio:   1:[Z]   → [Accept / Reject — below 1.5:1 minimum]
 
 NOTES
 ─────────────────────────────────────────────────

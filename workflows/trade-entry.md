@@ -86,7 +86,7 @@ The skill outputs one of three stages:
 | C — Trigger confirmed | Pattern + confluence ≥ 3/5 | Execute (see trade-management workflow) |
 
 **R:R check before executing:**
-- Minimum 1:2 to TP1 required — if below, skip the trade
+- Minimum 1.5:1 to TP1 required (prefer 2:1 or better) — if below, skip the trade
 - Maximum stop width: 50 pips on 4H setup, 80 pips on Daily setup — if wider, zone is too loose, skip
 
 ---

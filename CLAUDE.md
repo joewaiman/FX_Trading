@@ -233,7 +233,7 @@ If the weekly fundamental scan shows the short leg's score moving from Mild Bear
 - **TP1:** Close 50% of position at first key S&R level beyond entry
 - **TP2:** Close remaining 50% at second key S&R level or channel boundary
 - **Stop tightening:** Once price reaches 1:1 R, consider moving stop to breakeven
-- **Minimum R:R:** 1:2 to TP1 required to take the trade
+- **Minimum R:R:** 1.5:1 to TP1 required to take the trade (prefer 2:1 or better)
 - **Stop placement:** SL must be at the nearest structural level that invalidates the thesis (e.g. above the swing high that would break the bearish channel), not just above the trigger candle's wick. The candle wick is the minimum — the structural level is the actual placement.
 - **Max stop width:** 50 pips on a 4H setup / 80 pips on a Daily setup — if the structural invalidation level is further than this, the zone is too loose, skip or reassess
 - **Correlation risk:** Avoid simultaneous exposure to the same currency on multiple pairs (e.g. SEKJPY long + EURSEK short = double SEK long). Flag and size down if correlation is unavoidable

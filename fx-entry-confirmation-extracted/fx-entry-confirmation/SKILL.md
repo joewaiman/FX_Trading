@@ -287,7 +287,7 @@ Risk (pips) = |Entry − Stop Loss|
 Reward TP1  = |TP1 − Entry|
 R:R TP1     = Reward ÷ Risk
 
-Minimum acceptable: 1:2
+Minimum acceptable: 1.5:1 (prefer 2:1 or better)
 ```
 
 If TP1 does not offer at least 1.5:1, flag the setup as **insufficient reward** — do not recommend entry.
