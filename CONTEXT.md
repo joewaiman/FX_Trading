@@ -6,116 +6,74 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 ---
 
 ## Last Updated
-**Date:** 2026-06-24 (W26) — session 2
-**Session work:** Entry confirmation review on EUR/USD and EUR/NOK
+**Date:** 2026-07-31 (W31) — automated Friday-night scheduled run
+**Session work:** W31 weekly overview + fundamental scorecard generated (weekly-reports/2026-W31.md, fundamental-analysis/2026-W31.md)
 
 ---
 
-## Current Market Backdrop
+## Current Market Backdrop (W31, 31 Jul 2026)
 
-- **Iran–US war energy shock** driving global inflation above target across most economies
-- **ECB** hiked to 2.40% on June 11 — stagflation risk (hiking into contraction)
-- **Fed** on hold with hawkish lean — October 2026 hike possible
-- **BoJ** hiked to 1.0% (highest since 1995) — JPY becoming less bearish
-- **MAS** tightened S$NEER slope (April 2026) — SGD bullish
+- **Iran–US war energy shock** driving global inflation; Brent crude broke above **$100/bbl** this week
+- **ECB** held at 2.25% (Jul 23) — stagflation trap: 3.0% CPI flash vs stagnating GDP
+- **Fed** held 3.50–3.75% (9-3 hawkish dissenters). US Q2 GDP +1.5% (miss). GDP deflator 6.3%
+- **BoJ** held 1.0% (8-1); Takata dissented for 1.25%. Historic **$53B intervention** on Thursday
+- **BoE** held 3.75% (6-3); 3 hawkish dissenters want 4%. CPI June 2.6% (miss, below forecast)
+- **RBNZ** hiked to 2.50% (Jul 8) — first hike in 3 years; path to 3.00% by end-2026
+- **RBA cut expected** Mon 4 Aug — first 2026 cut, ending the hiking narrative for AUD
 
 ---
 
-## W26 Fundamental Scores (2026-06-24)
+## W31 Fundamental Scores (2026-07-31)
 
-Full detail in: `fundamental-analysis/2026-W26.md`
+Full detail in: `fundamental-analysis/2026-W31.md`
 
 | Currency | Bias | Notes |
 |----------|------|-------|
-| SGD | 🟢 Strong Bullish | MAS tightening, inflation controlled, strong trade |
-| USD | 🟢 Mild Bullish | Resilient labour, hold with hawkish lean |
-| INR | 🟢 Mild Bullish | RBI easing from strength, services PMI solid |
-| NOK | 🟢 Mild Bullish | Oil windfall, Norges Bank hawkish, low unemployment |
-| BRL | 🟢 Mild Bullish | High rates, surplus, inflation converging |
-| EUR | 🔴 Mild Bearish | Stagflation trap — ECB hiked but GDP contracting |
-| SEK | 🔴 Mild Bearish | Riksbank cutting, PMI weak, export slowdown |
-| HUF | 🔴 Mild Bearish | Inflation elevated but NBH cutting, weak growth |
-| CNY | 🔴 Mild Bearish | PBOC easing, export slowdown, deflation risk |
-| ILS | 🔴 Mild Bearish | War premium, fiscal pressures, BoI easing |
-| GBP | 🟡 Conflicted | Services strong / manufacturing weak, split signals |
-| JPY | 🟡 Conflicted | BoJ hiking but still ultra-low vs peers |
-| CAD | 🟡 Conflicted | BoC cutting but oil supports |
-| NZD | 🟡 Conflicted | RBNZ cutting cycle complete but no new catalyst |
-| PLN | 🟡 Conflicted | NBP holding but mixed growth signals |
-| MXN | 🟡 Conflicted | Banxico cutting, energy windfall partially offsets |
-| AUD | 🟡 Conflicted | RBA cautious, commodity split (iron ore down, LNG up) |
-| CHF | 🟡 Conflicted | SNB cutting, safe-haven demand offsetting fundamentals |
-| DKK | 🟡 Mirrors EUR | ERM II peg — follows EUR score |
+| NOK | 🟢 **Strong Bullish** | Brent >$100, Norges Bank 4.25% hawkish, large oil surplus |
+| NZD | 🟢 Mild Bullish | RBNZ hiked to 2.50% Jul 8 — first hike in 3 years; path to 3.00% |
+| SGD | 🟢 Mild Bullish | GDP +4% YoY, retail strong, managed float |
+| BRL | 🟢 Mild Bullish | High Selic, expanding PMIs, large trade surplus |
+| USD | 🟢 Mild Bullish | Hawkish FOMC dissenters, Core PCE 3.3%, GDP soft but not recessionary |
+| INR | 🟢 Mild Bullish | RBI 5.25% neutral, services PMI 58.9, GDP +7.2% |
+| ILS | 🔴 **Strong Bearish** | War economy: GDP −3.2%, retail −1.7%, BoI easing, trade deficit |
+| EUR | 🔴 Mild Bearish | Stagflation trap — ECB on hold, services PMI 46.4, unemployment 6.2% |
+| DKK | 🔴 Mild Bearish | ERM II peg — mirrors EUR |
+| AUD | 🟡 Conflicted | RBA cut imminent (Aug 4); CPI 4.2% elevated — opposing signals |
+| GBP | 🟡 Conflicted (hawkish lean) | BoE 3 hawkish dissenters; CPI 2.6% beats; services weak |
+| JPY | 🟡 Conflicted (improving) | BoJ hiking direction confirmed; intervention at 163; still ultra-low rates |
+| CAD | 🟡 Conflicted | BoC resuming cuts; weak GDP/labour; oil partially offsets |
+| CHF | 🟡 Conflicted | SNB 0%; safe-haven demand vs cut bias |
+| SEK | 🟡 Conflicted | Riksbank hike risk flagged; PMI strong; GDP still negative |
+| MXN | 🟡 Conflicted (deteriorating) | Trump tariffs targeting MXN; peso −2% this week |
+| CNY | 🟡 Conflicted | CPI 0.9% (miss); PBoC managed; strong trade surplus offset by tariff risk |
+| PLN | 🟡 Conflicted | NBP holding, mixed signals |
+| HUF | 🟡 Conflicted | MNB 6.50%; growth improving |
 
-**Top 3 high-conviction pairs from fundamentals:**
-1. SHORT EUR/USD ★★★ (EUR Mild Bearish vs USD Mild Bullish)
-2. SHORT EUR/NOK ★★★ (EUR Mild Bearish vs NOK Mild Bullish)
-3. LONG NOK/SEK ★★★ (NOK Mild Bullish vs SEK Mild Bearish)
-
----
-
-## Active Technical Analysis (W26)
-
-### EUR/USD — `analysis/2026-06-24-EURUSD-technical.md`
-
-| Timeframe | Channel | SMAs | RSI |
-|-----------|---------|------|-----|
-| Weekly | 🔴 Bearish breakdown | Both well above price | 38.18 (bearish) |
-| Daily | 🔴 Bearish | Both above price | ~27 ⚠️ oversold |
-| 4H | 🔴 Bearish | SMA20: 1.14202 / SMA50: 1.15047 — both above price | **17.95 ⚠️ DEEPLY oversold** |
-
-**Current price:** ~1.1342
-**What happened:** Price pulled back into entry zone (1.1450–1.1500) today. A marginal bearish breakdown occurred (Bar 9: open 1.14549, close 1.14310, zero upper wick). Price has since fallen ~110 pips to 1.1342. 4H RSI hit 17.95 — extreme oversold. Entry opportunity passed without a clean Grade A/B trigger.
-
-**Status:** ⏳ WAITING — DO NOT SHORT HERE. RSI 17.95 on 4H means bounce is highly likely before any further continuation.
-
-**Watch for (Scenario A — shallow bounce):** Recovery to **1.1380–1.1430** + bearish 4H pin bar/engulfing
-- Entry: ~1.1410 | Stop: 1.1470 | TP1: 1.1280 | R:R ~2:1 ✅
-
-**Watch for (Scenario B — full retest):** Recovery back to **1.1450–1.1500** + bearish 4H trigger
-- Entry: 1.1450–1.1500 | Stop: 1.1570 | TP1: 1.1280 | TP2: 1.1150
-
-**Invalidation:** Daily close above 1.1560 — broken support reclaimed, thesis weakens
-
-**⚠️ Macro check required before any entry:** Verify no USD or EUR high-impact events (PCE, Fed speakers, ECB) within 72h
+**Top pairs by conviction (W31):**
+1. SHORT EUR/NOK ★★★ (NOK Strong Bullish vs EUR Mild Bearish) — **thesis already delivering: EUR/NOK 10.89**
+2. LONG NZD/EUR ★★ (NZD Mild Bullish vs EUR Mild Bearish)
+3. LONG NOK/SEK ★★ (NOK Strong Bullish vs SEK Conflicted) — oil above $100 strengthens case
 
 ---
 
-### EUR/NOK — `analysis/2026-06-24-EURNOK-technical.md`
+## Active Technical Analysis
 
-| Timeframe | Channel | SMAs | RSI |
-|-----------|---------|------|-----|
-| Weekly | 🟡 Transitional | SMA20: 11.03 (below) / SMA50: 11.45 (above) | ~49.71 (neutral) |
-| Daily | 🟢 Bullish | Both well below price | ~68 approaching overbought |
-| 4H | 🟢 Bullish | SMA20: 11.121 / SMA50: 11.081 — both below price | 65.94 (bullish) |
+### EUR/USD — status from W26 (not re-charted this session)
 
-**Current price:** ~11.160
-**What happened:** Price pulled back intraday to 11.063 (tested 4H SMA50 at 11.08), then recovered cleanly to 11.160. Classic bullish behaviour — buyers defended the SMA50. Uptrend firmly intact.
+**Current price:** ~1.139 (W31 close est.)
+**Status:** ⏳ WAITING — No entry triggered since W26. Price has been in the 1.134–1.145 range. Scenario A bounce to 1.1380–1.1430 was not met with a qualifying trigger; Scenario B (1.1450–1.1500) not reached. Re-chart required before any trade.
+**Invalidation:** Daily close above 1.1560
 
-**Status:** ❌ NO TRADE — Daily and 4H channels both bullish, opposing the short thesis. ~280 pips from entry zone. No change from last session.
+### EUR/NOK — thesis DELIVERING
 
-**Watch for:** Price approaches **11.40–11.50** (weekly SMA50 resistance) + bearish 4H candle
-- Entry: 11.45–11.50 | Stop: 11.58 | TP1: 11.15 | TP2: 10.90
-- Daily RSI breaking above 70 would confirm exhaustion approaching
+**Current price:** ~10.89 (W31 close est.)
+**Original entry zone was 11.45–11.50.** Price has fallen through the entire original target range without a setup trigger. The fundamental case has dramatically strengthened (oil above $100, Norges Bank hawkish). TP2 was 10.90 — price is now AT TP2.
+**Status:** ✅ THESIS WORKING — No formal position was entered at 11.45, but the move has confirmed the directional view. At next session: consider whether to wait for a pullback to 11.00–11.10 for a fresh long NOK entry, or close watch of the NOK/SEK pair instead.
 
-**Key support to watch:** 4H SMA50 (~11.08) — a daily close below this signals trend weakening
+### NOK/SEK — oil catalyst activated
 
----
-
-### NOK/SEK — `analysis/2026-06-24-NOKSEK-technical.md`
-
-*(Not reviewed this session — status carried forward from session 1)*
-
-| Timeframe | Channel | SMAs | RSI |
-|-----------|---------|------|-----|
-| Weekly | 🟢 Correcting | Well below price (0.93 area) | 62.52 (bullish) |
-| Daily | 🔴 Bearish correction | ~0.998 / ~0.996 — both above price | ~47.99 (neutral-bearish) |
-| 4H | 🟢 Recovering | ~0.991 / ~0.989 — both below price | 63.62 (bullish) |
-
-**Current price:** ~0.9941
-**Status:** ⏳ WAITING — R:R blocking. Distance to TP1 (1.000) only ~60 pips from current; risk ~90 pips. 1.5:1 minimum not met.
-**Watch for (option A):** Pullback to **0.985–0.990** with bullish 4H pin bar → entry 0.988, stop 0.980
-**Watch for (option B):** Daily close above **0.99622** (daily SMA50) with RSI > 50 → confirms daily reversal
+**Current price:** ~1.012 est. (oil above $100 has driven NOK significantly higher vs SEK)
+**Status:** ⏳ REVIEW NEEDED — Original levels (0.985–0.990 entry; 1.000 TP1) may now be invalidated by the sharp NOK move. Re-chart required.
 
 ---
 
@@ -129,19 +87,23 @@ None currently open.
 
 | File | Contents |
 |------|----------|
-| `fundamental-analysis/2026-W26.md` | Full W26 scorecard for all 19 currencies |
-| `analysis/2026-06-24-EURUSD-technical.md` | EUR/USD technical — waiting for bounce then re-entry |
-| `analysis/2026-06-24-EURNOK-technical.md` | EUR/NOK technical — waiting for 11.45 zone |
-| `analysis/2026-06-24-NOKSEK-technical.md` | NOK/SEK technical — waiting for R:R to work |
+| `fundamental-analysis/2026-W31.md` | Full W31 scorecard for all 19 currencies (latest) |
+| `weekly-reports/2026-W31.md` | Full W31 weekly overview including equity performance and W32 calendar |
+| `fundamental-analysis/2026-W22.md` | W22 scorecard (historical) |
+| `analysis/2026-06-24-EURUSD-technical.md` | EUR/USD technical (W26, stale — re-chart needed) |
+| `analysis/2026-06-24-EURNOK-technical.md` | EUR/NOK technical (W26, stale — thesis delivered) |
+| `analysis/2026-06-24-NOKSEK-technical.md` | NOK/SEK technical (W26, stale — re-chart needed) |
 
 ---
 
 ## Next Steps
 
-1. **EUR/USD:** Monitor for bounce. Re-run entry confirmation when price recovers to 1.1380–1.1430 (Scenario A) or 1.1450–1.1500 (Scenario B). Always macro-check first.
-2. **EUR/NOK:** Monitor for gradual approach to 11.40–11.50. May take 5–10 sessions at current pace.
-3. **NOK/SEK:** Watch for pullback to 0.985–0.990 or daily close above 0.9962 (SMA50).
-4. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard for central bank decisions or data releases.
+1. **EUR/NOK:** Thesis delivered — price at original TP2 (~10.90). At next session, decide: (a) fresh NOK/SEK long if oil holds above $100, or (b) wait for EUR/NOK pullback to 11.00–11.10 for re-entry.
+2. **EUR/USD:** Re-chart on Monday. Price ~1.139 — need fresh technical analysis before considering any entry.
+3. **NOK/SEK:** Re-chart required — oil move likely invalidated original entry levels.
+4. **RBA cut (Mon 4 Aug):** Watch AUD crosses. A dovish cut could open AUD/USD toward 0.680 and create short AUD opportunities.
+5. **US NFP (Fri 8 Aug):** Major risk event — pre-position carefully. No new entries the day before NFP.
+6. **Next fundamental scan:** W33 (week of Aug 10) after NFP and RBA decision are known.
 
 ---
 
