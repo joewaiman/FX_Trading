@@ -15,14 +15,15 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 
 - **Iran–US war energy shock** (ongoing since April 2026) — crude oil above $100/barrel; Strait of Hormuz risk elevated
 - **Global inflation re-accelerating** — US Sep CPI 3.7% (above 3.6% consensus); EUR Sep CPI 3.8% (above 3.2% prior)
-- **Fed** at 3.75–4.00% (hiked September 2026, 25bp) — 42% odds of another hike at Oct 28 FOMC
-- **ECB** at 2.50% (hiked September 2026) — next decision October 29; stagflation trap (hiking into PMI contraction)
-- **BoJ** at 1.00% (hiked June 2026, highest since 1995) — Governor Ueda hawkish; but USD/JPY still ~158
-- **RBA** at 4.35% (holding) — rate advantage vs Fed narrowing (Fed hiked twice since May)
-- **BoC** at 2.25% (cutting cycle ongoing)
-- **RBNZ** at 2.25% (cutting cycle complete; Q3 CPI due Oct 22 is next key event)
+- **Fed** at 3.75–4.00% (hiked September 2026, 25bp) — ~27–42% odds of another hike at Oct 28 FOMC
+- **ECB** at 2.50% (hiked September 2026) — next decision October 29; PMI composite 53.1 (41-month high) softens bearish case
+- **BoJ** at **1.25%** (hiked September 18, 2026) — Governor Ueda hawkish; but USD/JPY still ~158 (carry drag)
+- **RBA** at **4.60%** (hiked September 29, 2026 — 4th hike of 2026; most aggressive G10 hiker)
+- **BoC** at 2.25% (lean to cut at Oct 28 — Sep jobs -68k)
+- **RBNZ** at **2.75%** (hiked September 2, 2026 — NOT cutting; Oct 28 decision "completely open")
 - **BoE** at 3.75% (6-3 hold vote; 3 members favour hike to 4.00%) — Sep CPI due Oct 22
-- **Norges Bank** at 4.25% (hawkish) — NOK benefits from crude >$100
+- **Norges Bank** at **4.50%** (hiked September 24, 2026) — NOK benefits from Brent $105/bbl
+- **SNB** at **0.00%** (held September 24, 2026) — deepest rate deficit in G10
 - **DXY** ~102.4–102.5 — broadly flat on W42 despite hot US CPI
 
 ---
@@ -31,33 +32,27 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 
 Full detail in: `fundamental-analysis/2026-W42.md`
 
-| Currency | Bias | Notes |
-|----------|------|-------|
-| NOK | 🟢 Strong Bullish | Oil windfall (crude >$100), Norges Bank 4.25% hawkish, CPI above target |
-| USD | 🟢 Mild Bullish | Fed 3.75–4.00%, hot CPI 3.7%, tight labour market, 42% Oct 28 hike odds |
-| JPY | 🟢 Mild Bullish | BoJ 1.00% (hiked June), hawkish; BUT USD/JPY still ~158 (carry drag) |
-| INR | 🟢 Mild Bullish | GDP +7.2%, PMIs expanding, Nifty +2.78% in W42 |
-| SGD | 🟢 Mild Bullish | MAS tightening, structural surplus, GDP +4%, stable |
-| GBP | 🟡 Neutral | GDP positive, Sep CPI (Oct 22) could upgrade; 3-way BoE hike dissent |
-| NZD | 🟡 Neutral | Cutting cycle complete; Q3 CPI (Oct 22) is inflection event |
-| AUD | 🟡 Neutral | RBA on hold 4.35%; RBA/Fed rate differential narrowing |
-| CHF | 🟡 Neutral | Safe-haven demand elevated; SNB cutting cycle |
-| CAD | 🟡 Conflicted | BoC cutting vs crude >$100 support; Sep CPI due Mon Oct 20 |
-| SEK | 🟡 Conflicted | Top W42 performer (+0.86%) but Riksbank cutting, unemployment 8.7% |
-| MXN | 🟡 Conflicted | Industrial output blowout (+3.5% YoY Sep) vs Banxico cutting |
-| BRL | 🟡 Conflicted | High rates, expanding PMIs vs fiscal uncertainty |
-| CNY | 🟡 Conflicted | Sep CPI 0.9% (deflation risk) vs trade surplus $133.5B |
-| PLN | 🟡 Conflicted | GDP strong; NBP mixed signals |
-| HUF | 🟡 Neutral | NBH cutting but growth 3.2%; EUR-tracking |
-| EUR | 🔴 Mild Bearish | Stagflation — ECB hiking (2.50%) but PMIs in contraction, unemployment 6.2% |
-| DKK | 🔴 Mild Bearish | ERM II peg — mirrors EUR |
-| ILS | 🔴 Strong Bearish | Iran/Hormuz escalation, USD/ILS to 3.12–3.15, BoI cutting |
+*Rates corrected with Sep 2026 central bank decisions: BoJ 1.25%, RBA 4.60%, RBNZ 2.75%, Norges Bank 4.50%, SNB 0.00%*
 
-**Top high-conviction pairs from W42 fundamentals:**
-1. SHORT EUR/NOK ★★★ (NOK Strong Bull vs EUR Mild Bear — oil windfall amplifies divergence)
-2. LONG NOK/SEK ★★★ (NOK Strong Bull vs SEK Conflicted — 250bps rate diff in NOK's favour)
-3. SHORT EUR/JPY ★★ (JPY Mild Bull vs EUR Mild Bear — BoJ hiking vs ECB stagflation)
-4. SHORT EUR/USD ★★ (USD Mild Bull vs EUR Mild Bear — watch Oct 29 ECB decision)
+| Currency | Rate | Bias | Notes |
+|----------|------|------|-------|
+| USD | 3.75–4.00% | 🟢 Strong Bullish | ISM Mfg 54.5 / Svcs 54.9 (9th consecutive expansion), CPI 3.7%, tight labour 4.2% |
+| AUD | **4.60%** | 🟢 Mild Bullish | RBA 4th hike of 2026 (Sep 29); CPI 4.0%; PMIs expanding; unemployment edging up |
+| NOK | **4.50%** | 🟢 Mild Bullish | Norges Bank Sep hike; Brent $105/bbl → YTD surplus NOK 502bn; CPI 3.4% |
+| EUR | 2.50% | 🟡 Mild Bullish ⬆️ | PMI composite 53.1 (41-month high!); CPI 3.8% — but trade deficit -€16.1B |
+| GBP | 3.75% | 🟡 Neutral | 3 BoE members want hike; Sep CPI (Oct 22) is upgrade trigger |
+| NZD | **2.75%** | 🟡 Neutral | RBNZ hiking (not cutting!); Q3 CPI (Oct 21) is key inflection |
+| JPY | **1.25%** | 🟡 Neutral | BoJ hiked Sep 18 but core CPI 1.7% (below 2% target); USD/JPY still 158 |
+| CAD | 2.25% | 🟡 Neutral | Sep jobs -68k → BoC lean to cut Oct 28; Sep CPI (Oct 19) critical |
+| CHF | **0.00%** | 🔴 Mild Bearish ⬇️ | SNB on hold at 0% — deepest rate deficit in G10; CPI 0.8%, no urgency |
+| SEK | 1.75% | 🔴 Mild Bearish ⬇️ | CPIF 1.5% (below 2% target), unemployment 8.7%, Riksbank cutting lean |
+
+**Top high-conviction pairs from W42 fundamentals (corrected):**
+1. LONG USD/CHF ★★★ (USD Strong Bull vs CHF Mild Bear — 375–400bp rate differential)
+2. LONG NOK/SEK ★★★ (NOK Mild Bull vs SEK Mild Bear — 275bp rate diff + $105 oil)
+3. LONG USD/SEK ★★★ (USD Strong Bull vs SEK Mild Bear — 200bp+ diff, structural SEK weak)
+4. LONG AUD/NZD ★★ (AUD Mild Bull vs NZD Neutral — 185bp rate diff; watch NZ CPI Oct 21)
+5. LONG USD/CAD ★★ (USD Strong Bull vs CAD Neutral — hawkish Fed vs BoC lean to cut)
 
 ---
 
@@ -108,9 +103,11 @@ None currently open.
 5. **EUR Flash PMIs Fri Oct 24** — critical for ECB Oct 29 decision. Contraction confirmed → bearish EUR; surprise expansion → caution on shorts.
 
 ### Technical Analysis Required (priority order)
-1. **EUR/NOK** — highest conviction short; last technical was June 2026 (price was 11.16; now ~10.72). Need new entry zone.
-2. **NOK/SEK** — second priority; last analysis was June 2026 (price ~0.9941; check current level).
-3. **EUR/USD** — monitor for entry zone; Oct 29 ECB decision is a binary event.
+1. **USD/CHF** — new highest conviction; no prior technical analysis exists. Run full multi-timeframe setup.
+2. **NOK/SEK** — confirmed by both analysis versions; last technical was June 2026. Need new entry zone.
+3. **USD/SEK** — new high-conviction pair; no prior technical analysis exists.
+4. **AUD/NZD** — medium conviction; wait for NZ Q3 CPI (Oct 21) first.
+5. **EUR/NOK** — previously highest conviction short; EUR upgraded to Mild Bullish — re-evaluate after Oct 29 ECB decision.
 
 ### Upcoming Central Bank Decisions (next 2 weeks)
 - **ECB Oct 29** — hold likely but market watching for guidance; EUR/USD binary event
