@@ -6,116 +6,77 @@ Tell Claude: **"read CONTEXT.md and pick up where we left off"**
 ---
 
 ## Last Updated
-**Date:** 2026-06-24 (W26) — session 2
-**Session work:** Entry confirmation review on EUR/USD and EUR/NOK
+**Date:** 2026-10-16 (W42) — weekly scheduled update
+**Session work:** W42 weekly overview + W42 fundamental analysis generated
 
 ---
 
 ## Current Market Backdrop
 
-- **Iran–US war energy shock** driving global inflation above target across most economies
-- **ECB** hiked to 2.40% on June 11 — stagflation risk (hiking into contraction)
-- **Fed** on hold with hawkish lean — October 2026 hike possible
-- **BoJ** hiked to 1.0% (highest since 1995) — JPY becoming less bearish
-- **MAS** tightened S$NEER slope (April 2026) — SGD bullish
+- **Iran–US war energy shock** (ongoing since April 2026) — crude oil above $100/barrel; Strait of Hormuz risk elevated
+- **Global inflation re-accelerating** — US Sep CPI 3.7% (above 3.6% consensus); EUR Sep CPI 3.8% (above 3.2% prior)
+- **Fed** at 3.75–4.00% (hiked September 2026, 25bp) — 42% odds of another hike at Oct 28 FOMC
+- **ECB** at 2.50% (hiked September 2026) — next decision October 29; stagflation trap (hiking into PMI contraction)
+- **BoJ** at 1.00% (hiked June 2026, highest since 1995) — Governor Ueda hawkish; but USD/JPY still ~158
+- **RBA** at 4.35% (holding) — rate advantage vs Fed narrowing (Fed hiked twice since May)
+- **BoC** at 2.25% (cutting cycle ongoing)
+- **RBNZ** at 2.25% (cutting cycle complete; Q3 CPI due Oct 22 is next key event)
+- **BoE** at 3.75% (6-3 hold vote; 3 members favour hike to 4.00%) — Sep CPI due Oct 22
+- **Norges Bank** at 4.25% (hawkish) — NOK benefits from crude >$100
+- **DXY** ~102.4–102.5 — broadly flat on W42 despite hot US CPI
 
 ---
 
-## W26 Fundamental Scores (2026-06-24)
+## W42 Fundamental Scores (2026-10-16)
 
-Full detail in: `fundamental-analysis/2026-W26.md`
+Full detail in: `fundamental-analysis/2026-W42.md`
 
 | Currency | Bias | Notes |
 |----------|------|-------|
-| SGD | 🟢 Strong Bullish | MAS tightening, inflation controlled, strong trade |
-| USD | 🟢 Mild Bullish | Resilient labour, hold with hawkish lean |
-| INR | 🟢 Mild Bullish | RBI easing from strength, services PMI solid |
-| NOK | 🟢 Mild Bullish | Oil windfall, Norges Bank hawkish, low unemployment |
-| BRL | 🟢 Mild Bullish | High rates, surplus, inflation converging |
-| EUR | 🔴 Mild Bearish | Stagflation trap — ECB hiked but GDP contracting |
-| SEK | 🔴 Mild Bearish | Riksbank cutting, PMI weak, export slowdown |
-| HUF | 🔴 Mild Bearish | Inflation elevated but NBH cutting, weak growth |
-| CNY | 🔴 Mild Bearish | PBOC easing, export slowdown, deflation risk |
-| ILS | 🔴 Mild Bearish | War premium, fiscal pressures, BoI easing |
-| GBP | 🟡 Conflicted | Services strong / manufacturing weak, split signals |
-| JPY | 🟡 Conflicted | BoJ hiking but still ultra-low vs peers |
-| CAD | 🟡 Conflicted | BoC cutting but oil supports |
-| NZD | 🟡 Conflicted | RBNZ cutting cycle complete but no new catalyst |
-| PLN | 🟡 Conflicted | NBP holding but mixed growth signals |
-| MXN | 🟡 Conflicted | Banxico cutting, energy windfall partially offsets |
-| AUD | 🟡 Conflicted | RBA cautious, commodity split (iron ore down, LNG up) |
-| CHF | 🟡 Conflicted | SNB cutting, safe-haven demand offsetting fundamentals |
-| DKK | 🟡 Mirrors EUR | ERM II peg — follows EUR score |
+| NOK | 🟢 Strong Bullish | Oil windfall (crude >$100), Norges Bank 4.25% hawkish, CPI above target |
+| USD | 🟢 Mild Bullish | Fed 3.75–4.00%, hot CPI 3.7%, tight labour market, 42% Oct 28 hike odds |
+| JPY | 🟢 Mild Bullish | BoJ 1.00% (hiked June), hawkish; BUT USD/JPY still ~158 (carry drag) |
+| INR | 🟢 Mild Bullish | GDP +7.2%, PMIs expanding, Nifty +2.78% in W42 |
+| SGD | 🟢 Mild Bullish | MAS tightening, structural surplus, GDP +4%, stable |
+| GBP | 🟡 Neutral | GDP positive, Sep CPI (Oct 22) could upgrade; 3-way BoE hike dissent |
+| NZD | 🟡 Neutral | Cutting cycle complete; Q3 CPI (Oct 22) is inflection event |
+| AUD | 🟡 Neutral | RBA on hold 4.35%; RBA/Fed rate differential narrowing |
+| CHF | 🟡 Neutral | Safe-haven demand elevated; SNB cutting cycle |
+| CAD | 🟡 Conflicted | BoC cutting vs crude >$100 support; Sep CPI due Mon Oct 20 |
+| SEK | 🟡 Conflicted | Top W42 performer (+0.86%) but Riksbank cutting, unemployment 8.7% |
+| MXN | 🟡 Conflicted | Industrial output blowout (+3.5% YoY Sep) vs Banxico cutting |
+| BRL | 🟡 Conflicted | High rates, expanding PMIs vs fiscal uncertainty |
+| CNY | 🟡 Conflicted | Sep CPI 0.9% (deflation risk) vs trade surplus $133.5B |
+| PLN | 🟡 Conflicted | GDP strong; NBP mixed signals |
+| HUF | 🟡 Neutral | NBH cutting but growth 3.2%; EUR-tracking |
+| EUR | 🔴 Mild Bearish | Stagflation — ECB hiking (2.50%) but PMIs in contraction, unemployment 6.2% |
+| DKK | 🔴 Mild Bearish | ERM II peg — mirrors EUR |
+| ILS | 🔴 Strong Bearish | Iran/Hormuz escalation, USD/ILS to 3.12–3.15, BoI cutting |
 
-**Top 3 high-conviction pairs from fundamentals:**
-1. SHORT EUR/USD ★★★ (EUR Mild Bearish vs USD Mild Bullish)
-2. SHORT EUR/NOK ★★★ (EUR Mild Bearish vs NOK Mild Bullish)
-3. LONG NOK/SEK ★★★ (NOK Mild Bullish vs SEK Mild Bearish)
-
----
-
-## Active Technical Analysis (W26)
-
-### EUR/USD — `analysis/2026-06-24-EURUSD-technical.md`
-
-| Timeframe | Channel | SMAs | RSI |
-|-----------|---------|------|-----|
-| Weekly | 🔴 Bearish breakdown | Both well above price | 38.18 (bearish) |
-| Daily | 🔴 Bearish | Both above price | ~27 ⚠️ oversold |
-| 4H | 🔴 Bearish | SMA20: 1.14202 / SMA50: 1.15047 — both above price | **17.95 ⚠️ DEEPLY oversold** |
-
-**Current price:** ~1.1342
-**What happened:** Price pulled back into entry zone (1.1450–1.1500) today. A marginal bearish breakdown occurred (Bar 9: open 1.14549, close 1.14310, zero upper wick). Price has since fallen ~110 pips to 1.1342. 4H RSI hit 17.95 — extreme oversold. Entry opportunity passed without a clean Grade A/B trigger.
-
-**Status:** ⏳ WAITING — DO NOT SHORT HERE. RSI 17.95 on 4H means bounce is highly likely before any further continuation.
-
-**Watch for (Scenario A — shallow bounce):** Recovery to **1.1380–1.1430** + bearish 4H pin bar/engulfing
-- Entry: ~1.1410 | Stop: 1.1470 | TP1: 1.1280 | R:R ~2:1 ✅
-
-**Watch for (Scenario B — full retest):** Recovery back to **1.1450–1.1500** + bearish 4H trigger
-- Entry: 1.1450–1.1500 | Stop: 1.1570 | TP1: 1.1280 | TP2: 1.1150
-
-**Invalidation:** Daily close above 1.1560 — broken support reclaimed, thesis weakens
-
-**⚠️ Macro check required before any entry:** Verify no USD or EUR high-impact events (PCE, Fed speakers, ECB) within 72h
+**Top high-conviction pairs from W42 fundamentals:**
+1. SHORT EUR/NOK ★★★ (NOK Strong Bull vs EUR Mild Bear — oil windfall amplifies divergence)
+2. LONG NOK/SEK ★★★ (NOK Strong Bull vs SEK Conflicted — 250bps rate diff in NOK's favour)
+3. SHORT EUR/JPY ★★ (JPY Mild Bull vs EUR Mild Bear — BoJ hiking vs ECB stagflation)
+4. SHORT EUR/USD ★★ (USD Mild Bull vs EUR Mild Bear — watch Oct 29 ECB decision)
 
 ---
 
-### EUR/NOK — `analysis/2026-06-24-EURNOK-technical.md`
+## Active Technical Analysis
 
-| Timeframe | Channel | SMAs | RSI |
-|-----------|---------|------|-----|
-| Weekly | 🟡 Transitional | SMA20: 11.03 (below) / SMA50: 11.45 (above) | ~49.71 (neutral) |
-| Daily | 🟢 Bullish | Both well below price | ~68 approaching overbought |
-| 4H | 🟢 Bullish | SMA20: 11.121 / SMA50: 11.081 — both below price | 65.94 (bullish) |
+No fresh technical analysis has been run since W26. Previous setups (EUR/USD, EUR/NOK, NOK/SEK from June 2026) are **stale — prices have moved significantly.**
 
-**Current price:** ~11.160
-**What happened:** Price pulled back intraday to 11.063 (tested 4H SMA50 at 11.08), then recovered cleanly to 11.160. Classic bullish behaviour — buyers defended the SMA50. Uptrend firmly intact.
+Current spot rates (Oct 16, 2026 ECB reference/US close):
+- EUR/USD: 1.1253 (EUR gained W42 — first weekly gain in 6 weeks)
+- USD/JPY: ~158.05
+- GBP/USD: 1.3325
+- AUD/USD: 0.6935
+- NZD/USD: 0.5663
+- USD/CAD: 1.4177
+- USD/NOK: ~9.530
+- USD/SEK: 9.894
+- USD/ILS: ~3.130
 
-**Status:** ❌ NO TRADE — Daily and 4H channels both bullish, opposing the short thesis. ~280 pips from entry zone. No change from last session.
-
-**Watch for:** Price approaches **11.40–11.50** (weekly SMA50 resistance) + bearish 4H candle
-- Entry: 11.45–11.50 | Stop: 11.58 | TP1: 11.15 | TP2: 10.90
-- Daily RSI breaking above 70 would confirm exhaustion approaching
-
-**Key support to watch:** 4H SMA50 (~11.08) — a daily close below this signals trend weakening
-
----
-
-### NOK/SEK — `analysis/2026-06-24-NOKSEK-technical.md`
-
-*(Not reviewed this session — status carried forward from session 1)*
-
-| Timeframe | Channel | SMAs | RSI |
-|-----------|---------|------|-----|
-| Weekly | 🟢 Correcting | Well below price (0.93 area) | 62.52 (bullish) |
-| Daily | 🔴 Bearish correction | ~0.998 / ~0.996 — both above price | ~47.99 (neutral-bearish) |
-| 4H | 🟢 Recovering | ~0.991 / ~0.989 — both below price | 63.62 (bullish) |
-
-**Current price:** ~0.9941
-**Status:** ⏳ WAITING — R:R blocking. Distance to TP1 (1.000) only ~60 pips from current; risk ~90 pips. 1.5:1 minimum not met.
-**Watch for (option A):** Pullback to **0.985–0.990** with bullish 4H pin bar → entry 0.988, stop 0.980
-**Watch for (option B):** Daily close above **0.99622** (daily SMA50) with RSI > 50 → confirms daily reversal
+**⚠️ New technical analysis is required before any trade entries. Run the technical-analysis skill for EUR/NOK, NOK/SEK, and EUR/USD to update entry zones.**
 
 ---
 
@@ -129,25 +90,57 @@ None currently open.
 
 | File | Contents |
 |------|----------|
-| `fundamental-analysis/2026-W26.md` | Full W26 scorecard for all 19 currencies |
-| `analysis/2026-06-24-EURUSD-technical.md` | EUR/USD technical — waiting for bounce then re-entry |
-| `analysis/2026-06-24-EURNOK-technical.md` | EUR/NOK technical — waiting for 11.45 zone |
-| `analysis/2026-06-24-NOKSEK-technical.md` | NOK/SEK technical — waiting for R:R to work |
+| `fundamental-analysis/2026-W42.md` | Full W42 scorecard for all 19 currencies (generated 2026-10-16) |
+| `fundamental-analysis/2026-W22.md` | Full W22 scorecard (May 2026 — baseline reference) |
+| `fundamental-analysis/2026-W21.md` | W21 scorecard (May 2026) |
+| `weekly-reports/2026-W42.md` | W42 weekly overview — economic highlights, calendar, FX performance |
+| `weekly-reports/2026-W41.md` | W41 weekly overview (Oct 5–9) |
 
 ---
 
-## Next Steps
+## Next Steps (Week of Oct 19–25, W43)
 
-1. **EUR/USD:** Monitor for bounce. Re-run entry confirmation when price recovers to 1.1380–1.1430 (Scenario A) or 1.1450–1.1500 (Scenario B). Always macro-check first.
-2. **EUR/NOK:** Monitor for gradual approach to 11.40–11.50. May take 5–10 sessions at current pace.
-3. **NOK/SEK:** Watch for pullback to 0.985–0.990 or daily close above 0.9962 (SMA50).
-4. **Next fundamental scan:** Week of 2026-06-29 (W27) — update scorecard for central bank decisions or data releases.
+### Immediate (this week)
+1. **CAD CPI Mon Oct 20** — if hot, reconsider CAD bias (currently Conflicted). Hot print could shift towards Mild Bullish.
+2. **GBP CPI Wed Oct 22** — key upgrade trigger. Hot print → Mild Bullish; miss → keep Neutral. Run GBP technical analysis before entry.
+3. **NZD CPI Wed Oct 22 (Q3)** — key inflection. Above 3% target → RBNZ may pause → NZD upgrade. Check NZD/USD or EUR/NZD technicals.
+4. **China Q3 GDP Fri Oct 24** — global macro read. Consensus ~4.8% YoY.
+5. **EUR Flash PMIs Fri Oct 24** — critical for ECB Oct 29 decision. Contraction confirmed → bearish EUR; surprise expansion → caution on shorts.
+
+### Technical Analysis Required (priority order)
+1. **EUR/NOK** — highest conviction short; last technical was June 2026 (price was 11.16; now ~10.72). Need new entry zone.
+2. **NOK/SEK** — second priority; last analysis was June 2026 (price ~0.9941; check current level).
+3. **EUR/USD** — monitor for entry zone; Oct 29 ECB decision is a binary event.
+
+### Upcoming Central Bank Decisions (next 2 weeks)
+- **ECB Oct 29** — hold likely but market watching for guidance; EUR/USD binary event
+- **Fed Oct 28** — 42% hike odds; USD catalyst
+- **BoC Oct 29** — likely hold or cut; CAD CPI (Mon) will inform
+- **BoJ Oct 31** — hawkish lean; potential catalyst for JPY
 
 ---
 
-## TradingView Notes (for next session)
+## W43 Macro Calendar (Oct 19–25)
+
+| Date | Event | Impact Pairs |
+|------|-------|-------------|
+| Mon Oct 20 | CAD CPI (Sep) | USD/CAD, EUR/CAD |
+| Tue Oct 21 | GBP Claimant Count/Unemployment | GBP/USD, EUR/GBP |
+| Tue Oct 21 | CNY PBoC LPR Decision | CNY pairs |
+| **Wed Oct 22** | **GBP CPI YoY (Sep)** | **GBP — BoE hike trigger** |
+| **Wed Oct 22** | **NZD CPI QoQ/YoY Q3** | **NZD — RBNZ catalyst** |
+| Thu Oct 23 | USD Jobless Claims | USD direction |
+| **Fri Oct 24** | **China Q3 GDP** | **Global risk sentiment** |
+| **Fri Oct 24** | **EUR Flash PMIs (Oct)** | **ECB Oct 29 setup** |
+| Fri Oct 24 | USD/GBP Flash PMIs | Risk sentiment |
+
+---
+
+## TradingView Notes
 
 - NOKSEK loads as `FOREXCOM:NOKSEK` — use this prefix when searching
 - `chart_set_symbol` always returns `chart_ready: false` — use keyboard workaround (click header → Ctrl+A → type symbol)
 - When searching for a pair in the symbol dialog and results show "not found in Stocks", check if symbol loaded in chart header — it often loads anyway. Press Escape and verify with screenshot.
 - Always exclude `bars[-1]` from OHLCV analysis (currently forming candle)
+- EUR/NOK: large pair, spreads can be 5–10 pips — factor into R:R calculations
+- ILS: USD/ILS is an NDF market — always check spread/liquidity before entry
